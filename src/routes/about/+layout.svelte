@@ -1,5 +1,3 @@
-<div class="asdfasfd">
-    test
-
+<div class="container">
     <slot></slot>
 </div>
