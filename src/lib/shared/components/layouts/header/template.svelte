@@ -1,5 +1,9 @@
 <script>
     // import classNames from "$lib/utils/classNames"
+    import Switch from '$lib/shared/components/forms/switch/template.svelte'
+
+    /** @type {boolean} */
+    let isDarkMode = false;
 </script>
 <div class="sticky top-0 z-40 w-full backdrop-blur flex-none transition-colors lg:z-50 lg:border-b lg:border-slate-900/10 dark:border-green/40 bg-white supports-backdrop-blur:bg-white/95 dark:bg-slate-900/75">
   <div class="py-4 border-b border-slate-900/10 lg:border-0 dark:border-green/40">
@@ -7,8 +11,9 @@
       <div class="relative flex items-center">
         <a class="mr-3 w-[2.0625rem] overflow-hidden md:w-auto hidden sm:block" href="/">
           <span class="sr-only">AI News home page</span>
-          <img src="/logo.svg" alt="AI News logo" width="100" height="50" class="dark:hidden"/>
-          <img src="/logo-dark.svg" alt="AI News logo" width="100" height="50" class="hidden dark:inline"/>
+          <!-- <img src="/logo.svg" alt="AI News logo" width="100" height="50" class="dark:hidden"/>
+          <img src="/logo-dark.svg" alt="AI News logo" width="100" height="50" class="hidden dark:inline"/> -->
+          <img src="/logo.png" alt="AI News logo" width="100" height="50" class="dark:hidden"/>
         </a>
         <!-- <Navigation /> -->
         <div class="ml-auto flex items-center dark:border-slate-800">
@@ -52,6 +57,11 @@
               )} />}
             </span>
           </Switch> -->
+
+          <Switch 
+            bind:checked={isDarkMode}
+          />
+          {`${isDarkMode}`}
           <a href="https://github.com/kdgilang" rel="noopener noreferrer" target="_blank" class="ml-6 block text-slate-700 dark:text-slate-200 hover:text-slate-500 dark:hover:text-slate-300">
             <span class="sr-only">AI News on GitHub</span>
             <svg viewBox="0 0 16 16" class="w-5 h-5" fill="currentColor" aria-hidden="true">
