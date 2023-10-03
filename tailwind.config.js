@@ -10,10 +10,12 @@ export default {
       xl: '1440px',
     },
     colors: {
+      'black': '#000000',
       'white': '#FFFFFF',
       'purpel': '#704674',
       'green': '#1b8415',
-      'red': '#b21c0e'
+      'red': '#b21c0e',
+      'yellow': '#FFA31A'
     },
     fontFamily: {
       sans: ['Graphik', 'sans-serif'],
