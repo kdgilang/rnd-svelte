@@ -1,0 +1,46 @@
+{
+  "status": 200,
+  "title": "Creams",
+  "results": [
+    {
+      "name": "coklat",
+      "description": "",
+      "status": true,
+      "isEmpty": false,
+      "price": {
+        "amount": 0,
+        "idrFormatted": "Rp 0"
+      }
+    },
+    {
+      "name": "strawberry",
+      "description": "",
+      "status": true,
+      "isEmpty": false,
+      "price": {
+        "amount": 0,
+        "idrFormatted": "Rp 0"
+      }
+    },
+    {
+      "name": "green tea",
+      "description": "",
+      "status": true,
+      "isEmpty": true,
+      "price": {
+        "amount": 0,
+        "idrFormatted": "Rp 0"
+      }
+    },
+    {
+      "name": "tiramisu",
+      "description": "",
+      "status": true,
+      "isEmpty": false,
+      "price": {
+        "amount": 0,
+        "idrFormatted": "Rp 0"
+      }
+    }
+  ]
+}

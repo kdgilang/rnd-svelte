@@ -1,0 +1,46 @@
+{
+  "status": 200,
+  "title": "Toppings",
+  "results": [
+    {
+      "name": "kacang",
+      "description": "",
+      "status": true,
+      "isEmpty": false,
+      "price": {
+        "amount": 500,
+        "idrFormatted": "Rp 500"
+      }
+    },
+    {
+      "name": "sprinkel",
+      "description": "",
+      "status": true,
+      "isEmpty": false,
+      "price": {
+        "amount": 500,
+        "idrFormatted": "Rp 500"
+      }
+    },
+    {
+      "name": "ceres",
+      "description": "",
+      "status": true,
+      "isEmpty": false,
+      "price": {
+        "amount": 500,
+        "idrFormatted": "Rp 500"
+      }
+    },
+    {
+      "name": "oreo",
+      "description": "",
+      "status": true,
+      "isEmpty": false,
+      "price": {
+        "amount": 500,
+        "idrFormatted": "Rp 500"
+      }
+    }
+  ]
+}

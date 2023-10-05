@@ -1,0 +1,165 @@
+{
+  "status": 200,
+  "results": [
+    {
+      "id": 1,
+      "name": "Apel merah",
+      "description": "Buah apel merah segar.",
+      "rate": 4.5,
+      "status": true,
+      "isEmpty": false,
+      "format": "kg",
+      "category": "buah",
+      "price": {
+        "amount": 20000,
+        "idrFormatted": "Rp 20.000"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Nanas madu",
+      "description": "Buah nanas madu manis.",
+      "rate": 4.5,
+      "status": true,
+      "isEmpty": false,
+      "format": "kg",
+      "category": "buah",
+      "price": {
+        "amount": 20000,
+        "idrFormatted": "Rp 20.000"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Melon madu",
+      "description": "Buah melon madu manis.",
+      "rate": 4.5,
+      "status": true,
+      "isEmpty": false,
+      "format": "kg",
+      "category": "buah",
+      "price": {
+        "amount": 10000,
+        "idrFormatted": "Rp 10.000"
+      }
+    },
+    {
+      "id": 4,
+      "name": "Semangka merah",
+      "description": "Buah semangka merah tanpa biji.",
+      "rate": 4.5,
+      "status": true,
+      "isEmpty": false,
+      "format": "kg",
+      "category": "buah",
+      "price": {
+        "amount": 10000,
+        "idrFormatted": "Rp 10.000"
+      }
+    },
+    {
+      "id": 5,
+      "name": "Es kul kul semangka",
+      "description": "Es buah beku dengan topping dan balutan cream favorit.",
+      "rate": 4.5,
+      "status": true,
+      "isEmpty": false,
+      "format": "tusuk",
+      "category": "es kul kul",
+      "variants": ["toppings", "creams"],
+      "price": {
+        "amount": 3000,
+        "idrFormatted": "Rp 3000"
+      }
+    },
+    {
+      "id": 6,
+      "name": "Es kul kul pisang",
+      "description": "Es buah beku dengan topping dan balutan cream favorit.",
+      "rate": 4.5,
+      "status": true,
+      "isEmpty": false,
+      "format": "tusuk",
+      "category": "es kul kul",
+      "variants": ["toppings", "creams"],
+      "price": {
+        "amount": 3000,
+        "idrFormatted": "Rp 3000"
+      }
+    },
+    {
+      "id": 7,
+      "name": "Es kul kul melon",
+      "description": "Es buah beku dengan topping dan balutan cream favorit.",
+      "rate": 4.5,
+      "status": true,
+      "isEmpty": false,
+      "format": "tusuk",
+      "category": "es kul kul",
+      "variants": ["toppings", "creams"],
+      "price": {
+        "amount": 3000,
+        "idrFormatted": "Rp 3000"
+      }
+    },
+    {
+      "id": 8,
+      "name": "Es kul kul strawberry",
+      "description": "Es buah beku dengan topping dan balutan cream favorit.",
+      "rate": 5,
+      "status": true,
+      "isEmpty": false,
+      "format": "tusuk",
+      "category": "es kul kul",
+      "variants": ["toppings", "creams"],
+      "price": {
+        "amount": 4000,
+        "idrFormatted": "Rp 4000"
+      }
+    },
+    {
+      "id": 9,
+      "name": "Es kul kul nanas",
+      "description": "Es buah beku dengan topping dan balutan cream favorit.",
+      "rate": 5,
+      "status": true,
+      "isEmpty": false,
+      "format": "tusuk",
+      "category": "es kul kul",
+      "variants": ["toppings", "creams"],
+      "price": {
+        "amount": 4000,
+        "idrFormatted": "Rp 4000"
+      }
+    },
+    {
+      "id": 10,
+      "name": "Es kul kul anggur",
+      "description": "Es buah beku dengan topping dan balutan cream favorit.",
+      "rate": 5,
+      "status": true,
+      "isEmpty": false,
+      "format": "tusuk",
+      "category": "es kul kul",
+      "variants": ["toppings", "creams"],
+      "price": {
+        "amount": 4000,
+        "idrFormatted": "Rp 4000"
+      }
+    },
+    {
+      "id": 11,
+      "name": "Salad buah",
+      "description": "Salad buah campur.",
+      "rate": 4.5,
+      "status": true,
+      "isEmpty": false,
+      "format": "mika",
+      "category": "buah",
+      "price": {
+        "amount": 5000,
+        "idrFormatted": "Rp 5000"
+      }
+    }
+  ] 
+}

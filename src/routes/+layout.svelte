@@ -3,7 +3,9 @@
   import { onMount } from 'svelte';
   import { siteSettings } from "$lib/shared/components/stores/siteSettings";
   import Header from '$lib/shared/components/layouts/header/template.svelte';
-
+  
+  /** @type {import('./$types').LayoutData} */
+	export let data;
 
   onMount(() => {
     // Init Dark Mode
@@ -20,6 +22,18 @@
 </script>
 
 <div class:dark={$siteSettings.isDarkMode}>
-  <Header />
+  <Header data={data} />
   <slot></slot>
 </div>
+
+
+
+<svelte:head>
+  <!-- Start of SleekFlow Embed Code -->
+  <script src="https://chat.sleekflow.io/embed_iframe.js" 
+  data-id="travischatwidget"
+  data-companyid="49f9e828-d392-42bf-8b7e-d9f94ddc3b06"
+  type="text/javascript">
+  </script>
+  <!-- End of SleekFlow Embed Code -->
+</svelte:head>
