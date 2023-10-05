@@ -3,7 +3,7 @@
   "title": "Toppings",
   "results": [
     {
-      "name": "kacang",
+      "title": "kacang",
       "description": "",
       "status": true,
       "isEmpty": false,
@@ -13,7 +13,7 @@
       }
     },
     {
-      "name": "sprinkel",
+      "title": "sprinkel",
       "description": "",
       "status": true,
       "isEmpty": false,
@@ -23,7 +23,7 @@
       }
     },
     {
-      "name": "ceres",
+      "title": "ceres",
       "description": "",
       "status": true,
       "isEmpty": false,
@@ -33,7 +33,7 @@
       }
     },
     {
-      "name": "oreo",
+      "title": "oreo",
       "description": "",
       "status": true,
       "isEmpty": false,

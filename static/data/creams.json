@@ -3,7 +3,7 @@
   "title": "Creams",
   "results": [
     {
-      "name": "coklat",
+      "title": "coklat",
       "description": "",
       "status": true,
       "isEmpty": false,
@@ -13,7 +13,7 @@
       }
     },
     {
-      "name": "strawberry",
+      "title": "strawberry",
       "description": "",
       "status": true,
       "isEmpty": false,
@@ -23,7 +23,7 @@
       }
     },
     {
-      "name": "green tea",
+      "title": "green tea",
       "description": "",
       "status": true,
       "isEmpty": true,
@@ -33,7 +33,7 @@
       }
     },
     {
-      "name": "tiramisu",
+      "title": "tiramisu",
       "description": "",
       "status": true,
       "isEmpty": false,

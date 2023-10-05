@@ -1,7 +1,7 @@
 <script>
   import "../app.css";
   import { onMount } from 'svelte';
-  import { siteSettings } from "$lib/shared/components/stores/siteSettings";
+  import { siteSettings } from "$lib/shared/stores/siteSettings.js";
   import Header from '$lib/shared/components/layouts/header/template.svelte';
   
   /** @type {import('./$types').LayoutData} */
@@ -23,7 +23,9 @@
 
 <div class:dark={$siteSettings.isDarkMode}>
   <Header data={data} />
-  <slot></slot>
+  <div class="my-5">
+    <slot></slot>
+  </div>
 </div>
 
 

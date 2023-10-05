@@ -1,7 +1,18 @@
 <script>
-    /** @type {import('./$types').PageData} */
+  import Card from '$lib/shared/components/elements/card/template.svelte';
+
+	/** @type {import('./$types').PageData} */
 	export let data;
 </script>
 
-<h1 class="text-3xl underline">Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<div class="container">
+  <div class="grid grid-cols-4 gap-4">
+    {#each data?.products as product }
+      <a href={`/products/${product.slug}`} data-sveltekit-preload-data="hover">
+        <Card data={product} />
+      </a>
+    {:else  }
+      <p class="text-center">No products found.</p>
+    {/each}
+  </div>
+</div>

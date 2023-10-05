@@ -3,13 +3,15 @@
   "results": [
     {
       "id": 1,
-      "name": "Apel merah",
+      "title": "Apel merah",
       "description": "Buah apel merah segar.",
       "rate": 4.5,
+      "slug": "apel",
       "status": true,
       "isEmpty": false,
       "format": "kg",
       "category": "buah",
+      "image": "https://picsum.photos/400/200",
       "price": {
         "amount": 20000,
         "idrFormatted": "Rp 20.000"
@@ -17,13 +19,15 @@
     },
     {
       "id": 2,
-      "name": "Nanas madu",
+      "title": "Nanas madu",
       "description": "Buah nanas madu manis.",
       "rate": 4.5,
+      "slug": "nanas",
       "status": true,
       "isEmpty": false,
       "format": "kg",
       "category": "buah",
+      "image": "https://picsum.photos/400/200",
       "price": {
         "amount": 20000,
         "idrFormatted": "Rp 20.000"
@@ -31,13 +35,15 @@
     },
     {
       "id": 3,
-      "name": "Melon madu",
+      "title": "Melon madu",
       "description": "Buah melon madu manis.",
       "rate": 4.5,
+      "slug": "melon",
       "status": true,
       "isEmpty": false,
       "format": "kg",
       "category": "buah",
+      "image": "https://picsum.photos/400/200",
       "price": {
         "amount": 10000,
         "idrFormatted": "Rp 10.000"
@@ -45,13 +51,15 @@
     },
     {
       "id": 4,
-      "name": "Semangka merah",
+      "title": "Semangka merah",
       "description": "Buah semangka merah tanpa biji.",
       "rate": 4.5,
+      "slug": "semangka",
       "status": true,
       "isEmpty": false,
       "format": "kg",
       "category": "buah",
+      "image": "https://picsum.photos/400/200",
       "price": {
         "amount": 10000,
         "idrFormatted": "Rp 10.000"
@@ -59,14 +67,16 @@
     },
     {
       "id": 5,
-      "name": "Es kul kul semangka",
+      "title": "Es kul kul semangka",
       "description": "Es buah beku dengan topping dan balutan cream favorit.",
       "rate": 4.5,
+      "slug": "es-semangka",
       "status": true,
       "isEmpty": false,
       "format": "tusuk",
       "category": "es kul kul",
       "variants": ["toppings", "creams"],
+      "image": "https://picsum.photos/400/200",
       "price": {
         "amount": 3000,
         "idrFormatted": "Rp 3000"
@@ -74,14 +84,16 @@
     },
     {
       "id": 6,
-      "name": "Es kul kul pisang",
+      "title": "Es kul kul pisang",
       "description": "Es buah beku dengan topping dan balutan cream favorit.",
       "rate": 4.5,
+      "slug": "es-pisang",
       "status": true,
       "isEmpty": false,
       "format": "tusuk",
       "category": "es kul kul",
       "variants": ["toppings", "creams"],
+      "image": "https://picsum.photos/400/200",
       "price": {
         "amount": 3000,
         "idrFormatted": "Rp 3000"
@@ -89,14 +101,16 @@
     },
     {
       "id": 7,
-      "name": "Es kul kul melon",
+      "title": "Es kul kul melon",
       "description": "Es buah beku dengan topping dan balutan cream favorit.",
       "rate": 4.5,
+      "slug": "es-melon",
       "status": true,
       "isEmpty": false,
       "format": "tusuk",
       "category": "es kul kul",
       "variants": ["toppings", "creams"],
+      "image": "https://picsum.photos/400/200",
       "price": {
         "amount": 3000,
         "idrFormatted": "Rp 3000"
@@ -104,14 +118,16 @@
     },
     {
       "id": 8,
-      "name": "Es kul kul strawberry",
+      "title": "Es kul kul strawberry",
       "description": "Es buah beku dengan topping dan balutan cream favorit.",
       "rate": 5,
+      "slug": "es-strawberry",
       "status": true,
       "isEmpty": false,
       "format": "tusuk",
       "category": "es kul kul",
       "variants": ["toppings", "creams"],
+      "image": "https://picsum.photos/400/200",
       "price": {
         "amount": 4000,
         "idrFormatted": "Rp 4000"
@@ -119,14 +135,16 @@
     },
     {
       "id": 9,
-      "name": "Es kul kul nanas",
+      "title": "Es kul kul nanas",
       "description": "Es buah beku dengan topping dan balutan cream favorit.",
       "rate": 5,
+      "slug": "es-nanas",
       "status": true,
       "isEmpty": false,
       "format": "tusuk",
       "category": "es kul kul",
       "variants": ["toppings", "creams"],
+      "image": "https://picsum.photos/400/200",
       "price": {
         "amount": 4000,
         "idrFormatted": "Rp 4000"
@@ -134,14 +152,16 @@
     },
     {
       "id": 10,
-      "name": "Es kul kul anggur",
+      "title": "Es kul kul anggur",
       "description": "Es buah beku dengan topping dan balutan cream favorit.",
       "rate": 5,
+      "slug": "es-anggur",
       "status": true,
       "isEmpty": false,
       "format": "tusuk",
       "category": "es kul kul",
       "variants": ["toppings", "creams"],
+      "image": "https://picsum.photos/400/200",
       "price": {
         "amount": 4000,
         "idrFormatted": "Rp 4000"
@@ -149,13 +169,15 @@
     },
     {
       "id": 11,
-      "name": "Salad buah",
+      "title": "Salad buah",
       "description": "Salad buah campur.",
       "rate": 4.5,
+      "slug": "salad-buah",
       "status": true,
       "isEmpty": false,
       "format": "mika",
       "category": "buah",
+      "image": "https://picsum.photos/400/200",
       "price": {
         "amount": 5000,
         "idrFormatted": "Rp 5000"
