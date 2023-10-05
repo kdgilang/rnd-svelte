@@ -8,7 +8,7 @@
 <div class="container">
   <div class="grid grid-cols-4 gap-4">
     {#each data?.products as product }
-      <a href={`/products/${product.slug}`} data-sveltekit-preload-data="hover">
+      <a href={`/products/${product.slug}`} data-sveltekit-preload-data="hover" class="hover:opacity-75 transition">
         <Card data={product} />
       </a>
     {:else  }
