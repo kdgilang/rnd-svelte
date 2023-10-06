@@ -1,4 +1,5 @@
 <script>
+
 	/** @type {import('./$types').PageData} */
 	export let data;
 
@@ -6,12 +7,22 @@
 
 	let dialog;
 
+  let topping;
+
+  let cream;
+
+  let qty = 1;
+
 	$: if (dialog && showModal) dialog.showModal();
   const { product } = data
+
+  function handleClickAdd() {
+    dialog.close();
+  }
 </script>
 
 <div class="container">
-	<section class="text-gray-700 body-font overflow-hidden bg-white">
+	<section class="body-font rounded overflow-hidden text-slate-700 dark:text-slate-200 bg-slate-200 dark:bg-slate-700">
 		<div class="container px-5 py-24 mx-auto">
 			<div class="lg:w-4/5 mx-auto flex flex-wrap">
 				<img
@@ -22,7 +33,7 @@
 				<div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0 flex items-center">
           <div class="w-full">
             <!-- <h2 class="text-sm title-font tracking-widest">{product.title}</h2> -->
-            <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">{product.title}</h1>
+            <h1 class="text-3xl title-font font-medium mb-1">{product.title}</h1>
             <div class="flex mb-4">
               <span class="flex items-center">
                 <svg
@@ -160,18 +171,46 @@
 	bind:this={dialog}
 	on:close={() => (showModal = false)}
 	on:click|self={() => dialog.close()}
+  class="text-slate-700 dark:text-slate-200 bg-slate-200 dark:bg-slate-700"
 >
 	<!-- svelte-ignore a11y-no-static-element-interactions -->
 	<div on:click|stopPropagation>
-    <p>test</p>
+    <form>
+      <div class="grid gap-6 mb-6 md:grid-cols-2">
+        <div>
+          <label for="qty" class="block mb-2 text-sm font-medium">Quantity</label>
+          <input type="number" id="qty" min="1" bind:value={qty} class="bg-slate-200 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-yellow focus:border-yellow block w-full p-2.5 dark:border-slate-700 dark:placeholder-slate-400">
+        </div>
+        <div>
+          <label for="qty" class="block mb-2 text-sm font-medium">Creams</label>
+          <select bind:value={cream} class="bg-slate-200 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-yellow focus:border-yellow block w-full p-2.5 dark:border-slate-700 dark:placeholder-slate-400">
+            <option selected>Choose a cream</option>
+            {#each data?.creams as cream}
+              <option value={cream.title} disabled={cream.isEmpty || !cream.status}>{cream.title} {cream.isEmpty ? '(not available)' : ''}</option>
+            {/each}
+          </select>
+        </div>
+        <div>
+          <label for="qty" class="block mb-2 text-sm font-medium">Toppings</label>
+          <select bind:value={topping} class="bg-slate-200 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-yellow focus:border-yellow block w-full p-2.5 dark:border-slate-700 dark:placeholder-slate-400">
+            <option selected>Choose a topping</option>
+            {#each data?.toppings as topping}
+              <option value={topping.title} disabled={topping.isEmpty || !topping.status}>{topping.title} {topping.isEmpty ? '(not available)' : ''}</option>
+            {/each}
+          </select>
+        </div>
+      </div>
+    </form>
 		<!-- svelte-ignore a11y-autofocus -->
     <div class="flex justify-between items-center">
       <button
         class="rounded h-10 bg-black px-5 border-0 inline-flex items-center hover:bg-opacity-75 justify-center transition text-white"
-        autofocus on:click={() => dialog.close()}>Cancel</button>
+        on:click|preventDefault={() => dialog.close()}>Cancel</button>
 
       <button
-        class="rounded h-10 bg-yellow px-5 border-0 inline-flex items-center hover:bg-opacity-75 justify-center ml-4 transition">
+        autofocus
+        class="rounded h-10 bg-yellow px-5 border-0 inline-flex items-center hover:bg-opacity-75 justify-center ml-4 transition"
+        on:click|preventDefault={handleClickAdd}>
         Add
       </button>
     </div>

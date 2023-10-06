@@ -22,9 +22,11 @@
 </script>
 
 <div class:dark={$siteSettings.isDarkMode}>
-  <Header data={data} />
-  <div class="my-5">
-    <slot></slot>
+  <div class="text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-900 h-screen">
+    <Header data={data} />
+    <div class="my-5">
+      <slot></slot>
+    </div>
   </div>
 </div>
 
