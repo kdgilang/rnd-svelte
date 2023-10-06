@@ -5,6 +5,9 @@
   import Cart from '$lib/shared/components/elements/cart/template.svelte'
   import { siteSettings } from '$lib/shared/stores/siteSettings.js';
 
+	import Stretch from 'svelte-loading-spinners/Stretch.svelte';
+	import { navigating } from '$app/stores';
+
   function handleOnChange(event) {
     const jsonString = JSON.stringify({ ...$siteSettings, isDarkMode: event.detail.value });
     localStorage.setItem('siteSettings', jsonString);
@@ -56,3 +59,9 @@
     </div>
   </div>
 </div>
+
+{#if $navigating}
+<div class="fixed bottom-0 left-0 z-40">
+  <Stretch size="60" color="#FF3E00" unit="px" duration="1s" />
+</div>
+{/if}

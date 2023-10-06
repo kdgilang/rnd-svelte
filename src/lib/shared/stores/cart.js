@@ -1,8 +1,23 @@
 import { writable } from 'svelte/store';
 
-export const cart = writable({
-  id: 'wsdfasfdsfd',
-  user: {},
-  items: [
-  ]
-});
+function createCart() {
+  const { subscribe, set, update } = writable({
+    id: 'wsdfasfdsfd',
+    user: {},
+    items: []
+  });
+
+	return {
+		subscribe,
+		updateItems: (items) => update((n) => ({
+      ...n,
+      items
+    })),
+		reset: () => set((n) => ({
+      ...n,
+      items: []
+    })),
+	};
+}
+
+export const cartStore = createCart();

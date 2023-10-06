@@ -1,5 +1,5 @@
 <script>
-
+  import { cartStore } from '$lib/shared/stores/cart';
 	/** @type {import('./$types').PageData} */
 	export let data;
 
@@ -16,7 +16,20 @@
 	$: if (dialog && showModal) dialog.showModal();
   const { product } = data
 
-  function handleClickAdd() {
+  function handleFormSubmit() {
+
+    const cartItems = [
+      ...$cartStore.items,
+      {
+        id: new Date().getTime(),
+        qty,
+        cream: data?.creams.find(item => item.title === cream),
+        topping: data?.toppings.find(item => item.title === topping),
+        product,
+      }
+    ]
+    cartStore.updateItems(cartItems);
+
     dialog.close();
   }
 </script>
@@ -175,7 +188,7 @@
 >
 	<!-- svelte-ignore a11y-no-static-element-interactions -->
 	<div on:click|stopPropagation>
-    <form>
+    <form action="" on:submit|preventDefault={handleFormSubmit}>
       <div class="grid gap-6 mb-6 md:grid-cols-2">
         <div>
           <label for="qty" class="block mb-2 text-sm font-medium">Quantity</label>
@@ -183,8 +196,8 @@
         </div>
         <div>
           <label for="qty" class="block mb-2 text-sm font-medium">Creams</label>
-          <select bind:value={cream} class="bg-slate-200 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-yellow focus:border-yellow block w-full p-2.5 dark:border-slate-700 dark:placeholder-slate-400">
-            <option selected>Choose a cream</option>
+          <select bind:value={cream} required class="bg-slate-200 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-yellow focus:border-yellow block w-full p-2.5 dark:border-slate-700 dark:placeholder-slate-400">
+            <option value="" selected>Choose a cream</option>
             {#each data?.creams as cream}
               <option value={cream.title} disabled={cream.isEmpty || !cream.status}>{cream.title} {cream.isEmpty ? '(not available)' : ''}</option>
             {/each}
@@ -192,28 +205,29 @@
         </div>
         <div>
           <label for="qty" class="block mb-2 text-sm font-medium">Toppings</label>
-          <select bind:value={topping} class="bg-slate-200 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-yellow focus:border-yellow block w-full p-2.5 dark:border-slate-700 dark:placeholder-slate-400">
-            <option selected>Choose a topping</option>
+          <select bind:value={topping} required class="bg-slate-200 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-yellow focus:border-yellow block w-full p-2.5 dark:border-slate-700 dark:placeholder-slate-400">
+            <option value="" selected>Choose a topping</option>
+            <option value="-">No toppings</option>
             {#each data?.toppings as topping}
               <option value={topping.title} disabled={topping.isEmpty || !topping.status}>{topping.title} {topping.isEmpty ? '(not available)' : ''}</option>
             {/each}
           </select>
         </div>
       </div>
-    </form>
-		<!-- svelte-ignore a11y-autofocus -->
-    <div class="flex justify-between items-center">
-      <button
-        class="rounded h-10 bg-black px-5 border-0 inline-flex items-center hover:bg-opacity-75 justify-center transition text-white"
-        on:click|preventDefault={() => dialog.close()}>Cancel</button>
+      
+      <!-- svelte-ignore a11y-autofocus -->
+      <div class="flex justify-between items-center">
+        <button
+          class="rounded h-10 bg-black px-5 border-0 inline-flex items-center hover:bg-opacity-75 justify-center transition text-white"
+          on:click|preventDefault={() => dialog.close()}>Cancel</button>
 
-      <button
-        autofocus
-        class="rounded h-10 bg-yellow px-5 border-0 inline-flex items-center hover:bg-opacity-75 justify-center ml-4 transition"
-        on:click|preventDefault={handleClickAdd}>
-        Add
-      </button>
-    </div>
+        <button
+          autofocus
+          class="text-black rounded h-10 bg-yellow px-5 border-0 inline-flex items-center hover:bg-opacity-75 justify-center ml-4 transition">
+          Add
+        </button>
+      </div>
+    </form>
 	</div>
 </dialog>
 
