@@ -8,6 +8,8 @@ function createCart() {
   });
 
 	return {
+    set,
+    update,
 		subscribe,
 		updateItems: (items) => update((n) => ({
       ...n,

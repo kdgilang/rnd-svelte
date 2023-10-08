@@ -7,6 +7,11 @@
     const newCart = $cartStore.items?.filter(item => item?.id !== cartItem?.id);
     cartStore.updateItems(newCart);
   }
+
+  function handleOnChangeQty(cartItem) {
+    const newCart = $cartStore.items?.map(item => item?.id === cartItem?.id ? {...item, qty: cartItem.qty } : item);
+    cartStore.updateItems(newCart);
+  }
 </script>
 <div class="pt-20">
   <h1 class="mb-10 text-center text-2xl font-bold">Cart Items</h1>
@@ -59,8 +64,8 @@
       <div class="mt-6 h-full rounded text-slate-700 dark:text-slate-200 bg-slate-200 dark:bg-slate-700 p-6 shadow-md md:mt-0 md:w-1/3">
         {#each $cartStore.items as item}
           <div class="mb-2 flex justify-between">
-            <p>{item?.product?.title}</p>
-            <p>$129.99</p>
+            <p>{item?.product?.title} - x {item.qty}</p>
+            <p>{item?.product?.price.idrFormatted}</p>
           </div>
           <div class="mb-2 flex justify-between text-xs">
             <p>cream: {item?.topping?.title}</p>
@@ -70,6 +75,7 @@
             <p>topping: {item?.cream?.title}</p>
             <p>{item?.cream?.price?.idrFormatted}</p>
           </div>
+          <hr class="mb-2" />
         {/each}
         
         <div class="mb-2 flex justify-between">
