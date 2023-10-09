@@ -1,46 +1,46 @@
 {
-  "status": 200,
-  "title": "Toppings",
-  "results": [
-    {
-      "title": "kacang",
-      "description": "",
-      "status": true,
-      "isEmpty": false,
-      "price": {
-        "amount": 500,
-        "idrFormatted": "Rp 500"
-      }
-    },
-    {
-      "title": "sprinkel",
-      "description": "",
-      "status": true,
-      "isEmpty": false,
-      "price": {
-        "amount": 500,
-        "idrFormatted": "Rp 500"
-      }
-    },
-    {
-      "title": "ceres",
-      "description": "",
-      "status": true,
-      "isEmpty": false,
-      "price": {
-        "amount": 500,
-        "idrFormatted": "Rp 500"
-      }
-    },
-    {
-      "title": "oreo",
-      "description": "",
-      "status": true,
-      "isEmpty": false,
-      "price": {
-        "amount": 500,
-        "idrFormatted": "Rp 500"
-      }
-    }
-  ]
+	"status": 200,
+	"title": "Toppings",
+	"results": [
+		{
+			"title": "kacang",
+			"description": "",
+			"status": true,
+			"isEmpty": false,
+			"price": {
+				"amount": 500,
+				"idrFormatted": "Rp 500"
+			}
+		},
+		{
+			"title": "sprinkel",
+			"description": "",
+			"status": true,
+			"isEmpty": false,
+			"price": {
+				"amount": 500,
+				"idrFormatted": "Rp 500"
+			}
+		},
+		{
+			"title": "ceres",
+			"description": "",
+			"status": true,
+			"isEmpty": false,
+			"price": {
+				"amount": 500,
+				"idrFormatted": "Rp 500"
+			}
+		},
+		{
+			"title": "oreo",
+			"description": "",
+			"status": true,
+			"isEmpty": false,
+			"price": {
+				"amount": 500,
+				"idrFormatted": "Rp 500"
+			}
+		}
+	]
 }

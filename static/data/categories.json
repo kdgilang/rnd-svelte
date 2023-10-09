@@ -1,7 +1,4 @@
 {
-    "status": 200,
-    "results": [
-        "buah",
-        "es kul kul"
-    ]
+	"status": 200,
+	"results": ["buah", "es kul kul"]
 }

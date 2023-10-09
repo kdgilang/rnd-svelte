@@ -1,46 +1,46 @@
 {
-  "status": 200,
-  "title": "Creams",
-  "results": [
-    {
-      "title": "coklat",
-      "description": "",
-      "status": true,
-      "isEmpty": false,
-      "price": {
-        "amount": 0,
-        "idrFormatted": "Rp 0"
-      }
-    },
-    {
-      "title": "strawberry",
-      "description": "",
-      "status": true,
-      "isEmpty": false,
-      "price": {
-        "amount": 0,
-        "idrFormatted": "Rp 0"
-      }
-    },
-    {
-      "title": "green tea",
-      "description": "",
-      "status": true,
-      "isEmpty": true,
-      "price": {
-        "amount": 0,
-        "idrFormatted": "Rp 0"
-      }
-    },
-    {
-      "title": "tiramisu",
-      "description": "",
-      "status": true,
-      "isEmpty": false,
-      "price": {
-        "amount": 0,
-        "idrFormatted": "Rp 0"
-      }
-    }
-  ]
+	"status": 200,
+	"title": "Creams",
+	"results": [
+		{
+			"title": "coklat",
+			"description": "",
+			"status": true,
+			"isEmpty": false,
+			"price": {
+				"amount": 0,
+				"idrFormatted": "Rp 0"
+			}
+		},
+		{
+			"title": "strawberry",
+			"description": "",
+			"status": true,
+			"isEmpty": false,
+			"price": {
+				"amount": 0,
+				"idrFormatted": "Rp 0"
+			}
+		},
+		{
+			"title": "green tea",
+			"description": "",
+			"status": true,
+			"isEmpty": true,
+			"price": {
+				"amount": 0,
+				"idrFormatted": "Rp 0"
+			}
+		},
+		{
+			"title": "tiramisu",
+			"description": "",
+			"status": true,
+			"isEmpty": false,
+			"price": {
+				"amount": 0,
+				"idrFormatted": "Rp 0"
+			}
+		}
+	]
 }

@@ -1,24 +1,26 @@
 import { writable } from 'svelte/store';
 
 function createCart() {
-  const { subscribe, set, update } = writable({
-    id: 'wsdfasfdsfd',
-    user: {},
-    items: []
-  });
+	const { subscribe, set, update } = writable({
+		id: 'wsdfasfdsfd',
+		user: {},
+		items: []
+	});
 
 	return {
-    set,
-    update,
+		set,
+		update,
 		subscribe,
-		updateItems: (items) => update((n) => ({
-      ...n,
-      items
-    })),
-		reset: () => set((n) => ({
-      ...n,
-      items: []
-    })),
+		updateItems: (items) =>
+			update((n) => ({
+				...n,
+				items
+			})),
+		reset: () =>
+			set((n) => ({
+				...n,
+				items: []
+			}))
 	};
 }
 

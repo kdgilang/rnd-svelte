@@ -1,10 +1,13 @@
 <script>
-  import { cartStore } from "$lib/shared/stores/cart";
+	import { cartStore } from '$lib/shared/stores/cart';
 </script>
+
 <div class="flex justify-center items-center w-[100px]">
 	<a class="relative" href="/cart" data-sveltekit-preload-data="hover">
 		<div class="t-0 absolute left-3">
-			<p class="flex h-1 w-1 items-center justify-center rounded-full bg-yellow p-2 text-[0.5rem] text-black">
+			<p
+				class="flex h-1 w-1 items-center justify-center rounded-full bg-yellow p-2 text-[0.5rem] text-black"
+			>
 				{$cartStore.items.length}
 			</p>
 		</div>
