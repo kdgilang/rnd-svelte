@@ -1,5 +1,7 @@
 <script>
 	import { cartStore } from '$lib/shared/stores/cart';
+  import Image from '$lib/shared/components/elements/image/template.svelte';
+
 	/** @type {import('./$types').PageData} */
 	export let data;
 
@@ -39,11 +41,13 @@
 	>
 		<div class="container px-5 py-24 mx-auto">
 			<div class="lg:w-4/5 mx-auto flex flex-wrap">
-				<img
-					alt={`image of ${product.title}`}
-					class="lg:w-1/2 w-full object-cover object-center rounded border border-gray-200"
-					src={product.image}
-				/>
+        <div class="lg:w-1/2 relative overflow-hidden bg-gray-200 flex items-center w-full">
+          <Image
+            alt={`image of ${product.title}`}
+            src={product.image}
+          />
+        </div>
+        
 				<div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0 flex items-center">
 					<div class="w-full">
 						<!-- <h2 class="text-sm title-font tracking-widest">{product.title}</h2> -->

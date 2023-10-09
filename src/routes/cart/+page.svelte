@@ -3,6 +3,7 @@
 	import { priceFormatted } from '$lib/shared/utils/priceFormatted';
 	import Stretch from 'svelte-loading-spinners/Stretch.svelte';
 	import {
+    PUBLIC_BASE_URL,
 		PUBLIC_FLIP_API_HOST,
 		PUBLIC_FLIP_API_KEY,
 		PUBLIC_LOCAL_API_HOST
@@ -26,7 +27,7 @@
 				item.qty;
 		});
 
-		totalAmount = subtotalAmount + shipping;
+		totalAmount = subtotalAmount ? (subtotalAmount + shipping) : 0;
 	}
 
 	async function handleOnClickCheckout() {
@@ -36,14 +37,16 @@
 
 		try {
 			const payload = {
-				title: 'Shop at Berbuah',
+				title: 'Berbuah bill',
 				amount: totalAmount,
 				type: 'SINGLE',
 				expired_date: dateFormatted(new Date(Date.now() + 8 * (60 * 60 * 1000))),
-				redirect_url: `${PUBLIC_LOCAL_API_HOST}/payment-status`,
+				redirect_url: `${PUBLIC_BASE_URL}/payment-status`,
 				is_address_required: 0,
 				is_phone_number_required: 1
 			};
+
+      console.log(payload)
 
 			const myHeaders = new Headers();
 			myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
@@ -57,6 +60,11 @@
 			};
 
 			const res = await (await fetch(`${PUBLIC_FLIP_API_HOST}/bill`, requestOptions)).json();
+
+      if (res?.errors?.length) {
+        alert(JSON.stringify(res?.errors));
+        return
+      }
 
 			window.location.href = `https://${res.link_url}`;
 		} catch (err) {
@@ -120,12 +128,11 @@
 										class="text-center bg-slate-200 dark:bg-slate-600 border border-slate-300 text-slate-900 dark:text-slate-200 text-sm rounded-lg focus:ring-yellow focus:border-yellow block w-full p-2.5 dark:border-slate-700 dark:placeholder-slate-400"
 									/>
 									<button
-										class="bg-yellow p-3 rounded hover:bg-black"
+										class="bg-yellow p-3 rounded hover:bg-black hover:fill-slate-200 transition"
 										aria-label="delete cart item"
 										on:click={() => handleRemoveCartItem(item)}
 									>
 										<svg
-											class="text-slate-200"
 											xmlns="http://www.w3.org/2000/svg"
 											height="1em"
 											viewBox="0 0 448 512"
@@ -180,20 +187,20 @@
 				</div>
 				<div class="flex justify-between">
 					<p>Shipping</p>
-					<p>{priceFormatted(shipping)}</p>
+					<p>{ totalAmount ? priceFormatted(shipping) : '-' }</p>
 				</div>
 				<hr class="my-4" />
 				<div class="flex justify-between">
 					<p class="text-lg font-bold">Total</p>
 					<div class="">
-						<p class="mb-1 text-lg font-bold">{priceFormatted(subtotalAmount + shipping)}</p>
+						<p class="mb-1 text-lg font-bold">{priceFormatted(totalAmount)}</p>
 						<p class="text-sm">including VAT</p>
 					</div>
 				</div>
 				<div class="flex items-center gap-3 mt-6 transition">
 					<button
 						class="w-full rounded-md bg-yellow py-1.5 font-medium hover:bg-black text-black hover:text-slate-200 transition disabled:bg-yellow disabled:text-white disabled:opacity-25"
-						disabled={isBusy}
+						disabled={isBusy || !totalAmount }
 						on:click|preventDefault={handleOnClickCheckout}
 					>
 						Check out

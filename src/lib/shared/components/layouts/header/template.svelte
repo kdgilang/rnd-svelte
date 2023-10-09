@@ -41,7 +41,7 @@
 						class="hidden dark:inline"
 					/>
 				</a>
-				<Select name="Category" items={data.categories} bind:value={category} />
+				<Select name="Category" defaultValue="Category" items={data.categories} bind:value={category} />
 				<Cart />
 			</div>
 			<div class="ml-auto flex items-center dark:border-slate-800">
@@ -86,7 +86,7 @@
 </div>
 
 {#if $navigating}
-	<div class="fixed bottom-0 left-0 z-40">
+	<div class="fixed bottom-0 inset-x-0 mx-auto z-40">
 		<Stretch size="60" color="#FF3E00" unit="px" duration="1s" />
 	</div>
 {/if}

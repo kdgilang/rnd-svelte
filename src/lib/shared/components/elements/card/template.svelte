@@ -1,4 +1,5 @@
 <script>
+	import Image from '$lib/shared/components/elements/image/template.svelte'
 	/**
 	 * @typedef CardType
 	 * @type {Object}
@@ -17,7 +18,9 @@
 <div
 	class="max-w-sm rounded overflow-hidden shadow-lg text-slate-700 dark:text-slate-200 bg-slate-200 dark:bg-slate-700"
 >
-	<img class="w-full" src={data?.image} alt={`image of ${data?.title}`} />
+	<div class="relative aspect-[16/9] overflow-hidden rounded bg-gray-200 group-hover:opacity-75 w-full">
+		<Image src={data?.image} alt={`image of ${data?.title}`} />
+	</div>
 	<div class="px-6 py-4">
 		<h4 class="font-bold text-xl mb-2">{data?.title}</h4>
 		<p class="text-gray-700 text-base">
