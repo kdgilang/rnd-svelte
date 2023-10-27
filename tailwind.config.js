@@ -47,9 +47,7 @@ export default {
 				'slate-600': '#5b5f62',
 				'slate-500': '#CCCCCC',
 				'slate-200': '#EEEEEE',
-
 				'slate-100': '#efefef',
-
 				'sky-400': '#231e12',
 				'sky-500': '#blue'
 			},

@@ -25,9 +25,9 @@
 </script>
 
 <div
-	class="sticky top-0 z-40 w-full backdrop-blur flex-none transition-colors lg:z-50 lg:border-b lg:border-slate-900/10 dark:border-green/40 bg-white supports-backdrop-blur:bg-white/95 dark:bg-slate-900/75"
+	class="sticky top-0 z-40 w-full backdrop-blur flex-none transition-colors lg:z-50 lg:border-b lg:border-slate-900/10 dark:border-yellow/40 bg-white supports-backdrop-blur:bg-white/95 dark:bg-slate-900/75"
 >
-	<div class="py-4 border-b border-slate-900/10 lg:border-0 dark:border-green/40">
+	<div class="py-4 border-b lg:border-0 border-yellow/40">
 		<div class="container relative flex items-center">
 			<div class="flex items-center">
 				<a class="mr-3 w-[2.0625rem] overflow-hidden md:w-auto hidden sm:block" href="/">
@@ -44,7 +44,14 @@
 				<Select name="Category" defaultValue="Category" items={data.categories} bind:value={category} />
 				<Cart />
 			</div>
-			<div class="ml-auto flex items-center dark:border-slate-800">
+			<div class="ml-auto flex gap-5 items-center dark:border-slate-800">
+				<a
+					href="/signin"
+					class="ml-6 flex text-slate-700 justify-center items-center gap-2 dark:text-slate-200 hover:text-slate-500 dark:hover:text-slate-300"
+				>
+          <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" class="w-5 h-5" fill="currentColor"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M352 96l64 0c17.7 0 32 14.3 32 32l0 256c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l64 0c53 0 96-43 96-96l0-256c0-53-43-96-96-96l-64 0c-17.7 0-32 14.3-32 32s14.3 32 32 32zm-9.4 182.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L242.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l210.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"/></svg>
+					<span class="text-xs">Sigin</span>
+				</a>
 				<Switch bind:checked={$siteSettings.isDarkMode} on:change={handleOnChange}>
 					<svelte:fragment slot="icon-indicator">
 						<svg
@@ -71,7 +78,7 @@
 					href="https://github.com/kdgilang"
 					rel="noopener noreferrer"
 					target="_blank"
-					class="ml-6 block text-slate-700 dark:text-slate-200 hover:text-slate-500 dark:hover:text-slate-300"
+					class=" block text-slate-700 dark:text-slate-200 hover:text-slate-500 dark:hover:text-slate-300"
 				>
 					<span class="sr-only">Fake store on GitHub</span>
 					<svg viewBox="0 0 16 16" class="w-5 h-5" fill="currentColor" aria-hidden="true">
@@ -86,7 +93,7 @@
 </div>
 
 {#if $navigating}
-	<div class="fixed bottom-0 inset-x-0 mx-auto z-40">
+	<div class="fixed bottom-0 inset-x-0 mx-auto z-40 w-[65px] text-center">
 		<Stretch size="60" color="#FF3E00" unit="px" duration="1s" />
 	</div>
 {/if}

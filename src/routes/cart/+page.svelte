@@ -46,8 +46,6 @@
 				is_phone_number_required: 1
 			};
 
-      console.log(payload)
-
 			const myHeaders = new Headers();
 			myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
 			myHeaders.append('Authorization', `Basic ${btoa(PUBLIC_FLIP_API_KEY)}:`);
@@ -60,6 +58,8 @@
 			};
 
 			const res = await (await fetch(`${PUBLIC_FLIP_API_HOST}/bill`, requestOptions)).json();
+
+      console.log(res)
 
       if (res?.errors?.length) {
         alert(JSON.stringify(res?.errors));
