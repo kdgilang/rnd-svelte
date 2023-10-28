@@ -8,7 +8,7 @@ export const sendVerificationCodeService = async (phoneNumber) => {
     to: `62${phoneNumber}`,
     type: 'template',
     template: {
-      name: 'verification',
+      name: 'verification_code',
       language: {
         code: 'en_US'
       },
