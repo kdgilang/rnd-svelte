@@ -1,5 +1,12 @@
 <script>
 
+  const handleKeyUp = async (e, index) => {
+   if(e.key === 'Backspace') {
+    e?.target?.previousElementSibling?.focus();
+   } else {
+    e?.target?.nextElementSibling?.focus();
+   }
+  }
 </script>
 
 <div class="py-20 px-3">
@@ -14,12 +21,12 @@
           </div>
           
           <div id="otp" class="flex flex-row justify-center text-center px-2 mt-5">
-            <input class="m-1 border h-10 w-10 text-center form-control rounded dark:text-slate-900 text-slate-100 bg-slate-900 dark:bg-slate-100" type="text" id="first" maxlength="1" /> 
-            <input class="m-1 border h-10 w-10 text-center form-control rounded dark:text-slate-900 text-slate-100 bg-slate-900 dark:bg-slate-100" type="text" id="second" maxlength="1" /> 
-            <input class="m-1 border h-10 w-10 text-center form-control rounded dark:text-slate-900 text-slate-100 bg-slate-900 dark:bg-slate-100" type="text" id="third" maxlength="1" /> 
-            <input class="m-1 border h-10 w-10 text-center form-control rounded dark:text-slate-900 text-slate-100 bg-slate-900 dark:bg-slate-100" type="text" id="fourth" maxlength="1" />
-            <input class="m-1 border h-10 w-10 text-center form-control rounded dark:text-slate-900 text-slate-100 bg-slate-900 dark:bg-slate-100" type="text" id="fifth" maxlength="1" /> 
-            <input class="m-1 border h-10 w-10 text-center form-control rounded dark:text-slate-900 text-slate-100 bg-slate-900 dark:bg-slate-100" type="text" id="sixth" maxlength="1" />
+            <input on:keyup={(e) => handleKeyUp(e, 1)} class="m-1 border h-10 w-10 text-center form-control rounded dark:text-slate-900 text-slate-100 bg-slate-900 dark:bg-slate-100" type="text" id="first" maxlength="1" /> 
+            <input on:keyup={(e) => handleKeyUp(e, 2)} class="m-1 border h-10 w-10 text-center form-control rounded dark:text-slate-900 text-slate-100 bg-slate-900 dark:bg-slate-100" type="text" id="second" maxlength="1" /> 
+            <input on:keyup={(e) => handleKeyUp(e, 3)} class="m-1 border h-10 w-10 text-center form-control rounded dark:text-slate-900 text-slate-100 bg-slate-900 dark:bg-slate-100" type="text" id="third" maxlength="1" /> 
+            <input on:keyup={(e) => handleKeyUp(e, 4)} class="m-1 border h-10 w-10 text-center form-control rounded dark:text-slate-900 text-slate-100 bg-slate-900 dark:bg-slate-100" type="text" id="fourth" maxlength="1" />
+            <input on:keyup={(e) => handleKeyUp(e, 5)} class="m-1 border h-10 w-10 text-center form-control rounded dark:text-slate-900 text-slate-100 bg-slate-900 dark:bg-slate-100" type="text" id="fifth" maxlength="1" /> 
+            <input on:keyup={(e) => handleKeyUp(e, 0)} class="m-1 border h-10 w-10 text-center form-control rounded dark:text-slate-900 text-slate-100 bg-slate-900 dark:bg-slate-100" type="text" id="sixth" maxlength="1" />
           </div>
           
           <div class="flex justify-center text-center mt-5">
