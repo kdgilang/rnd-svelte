@@ -1,6 +1,8 @@
 <script>
 	import { sendVerificationCodeService } from "$lib/shared/services/waServices";
+	import { registerUser } from "$lib/shared/stores/registerUser";
 	import Stretch from "svelte-loading-spinners/Stretch.svelte";
+  import { goto } from '$app/navigation';
 
   let name = '';
   let waNumber = '';
@@ -23,10 +25,14 @@
       isBusy = true;
       const res = await sendVerificationCodeService(waNumberFormatted);
 
-      if (res.error.error_data.details) {
-        error = res?.error?.error_data.details
+      if (res?.error?.error_data?.details) {
+        error = res.error.error_data.details
+        return
       }
 
+      registerUser.set(res);
+
+      goto('/verification');
     } catch (err) {
       error = err;
     } finally {
