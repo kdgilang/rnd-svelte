@@ -1,17 +1,11 @@
 import { waProvider } from "../providers/waProvider";
 
 /**
- * @param {string} [phoneNumber]
+ * @param {string} [waNumber]
  */
-export const sendVerificationCodeService = async (phoneNumber) => {
-  var minm = 100000;
-  var maxm = 999999;
-
-  const code = Math.floor(Math
-  .random() * (maxm - minm + 1)) + minm;
-
+export const sendVerificationCodeService = async ({ waNumber, code }) => {
   const requestBody = {
-    to: `62${phoneNumber}`,
+    to: `${waNumber}`,
     type: 'template',
     template: {
       name: 'verification_code',
@@ -42,8 +36,16 @@ export const sendVerificationCodeService = async (phoneNumber) => {
       ]
     }
   }
-  
-  const {contacts} = await waProvider(requestBody);
-  
-  return { waNumber: contacts?.[0].input, code }
+
+  try {
+    const res = await waProvider(requestBody);
+
+    if(res?.error) {
+      throw res?.error?.message || res.error.error_data.details;
+    }
+
+    return { waNumber: res?.contacts?.[0].input, code }
+  } catch (error) {
+    return { error };
+  }
 }

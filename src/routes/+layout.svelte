@@ -3,6 +3,8 @@
 	import { onMount } from 'svelte';
 	import { siteSettings } from '$lib/shared/stores/siteSettings.js';
 	import Header from '$lib/shared/components/layouts/header/template.svelte';
+	import Jellyfish from 'svelte-loading-spinners/Jellyfish.svelte';
+	import { navigating } from '$app/stores';
 
 	/** @type {import('./$types').LayoutData} */
 	export let data;
@@ -22,12 +24,21 @@
 </script>
 
 <div class:dark={$siteSettings.isDarkMode}>
-	<div class="text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-900 min-h-screen">
+	<div class="text-slate-700 dark:text-slate-100 min-h-screen bg-slate-100 dark:bg-slate-900">
 		<Header {data} />
 		<div class="py-5">
 			<slot />
 		</div>
 	</div>
+
+
+	{#if $navigating}
+		<div class="fixed z-50 bottom-0 top-0 bg-black/80 left-0 h-full w-full flex justify-center items-center">
+			<div class="inset-x-0 mx-auto w-[65px] text-center">
+				<Jellyfish size="60" color="#FFA31A" unit="px" duration="2s" />
+			</div>
+		</div>
+	{/if}
 </div>
 
 <svelte:head>

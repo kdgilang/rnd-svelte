@@ -1,9 +1,11 @@
 <script>
-	import { sendVerificationCodeService } from "$lib/shared/services/waServices";
-	import { registerUser } from "$lib/shared/stores/registerUser";
 	import Stretch from "svelte-loading-spinners/Stretch.svelte";
   import { goto } from '$app/navigation';
-
+  import Cookies from 'js-cookie';
+	import {
+    authRepository
+  } from "$lib/data/repositories/userRepositories";
+  
   let name = '';
   let waNumber = '';
   let waNumberFormatted = '';
@@ -13,7 +15,7 @@
   $: {
     waNumberFormatted = waNumber;
     if (waNumber?.[0] === '0') {
-      waNumberFormatted = `${waNumber.slice(1, waNumber?.length)}`;
+      waNumberFormatted = `62${waNumber.slice(1, waNumber?.length)}`;
     }
   }
 
@@ -21,16 +23,19 @@
     try {
       if(isBusy) return
       error = '';
-      
       isBusy = true;
-      const res = await sendVerificationCodeService(waNumberFormatted);
 
-      if (res?.error?.error_data?.details) {
-        error = res.error.error_data.details
-        return
+      const res = await authRepository({
+        name,
+        waNumber: waNumberFormatted
+      });
+
+      if(!res.status) {
+        error = res.message;
+        return;
       }
 
-      registerUser.set(res);
+      Cookies.set('waNumber', res.waNumber, { expires: 1 });
 
       goto('/verification');
     } catch (err) {

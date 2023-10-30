@@ -1,12 +1,8 @@
 <script>
-	// import classNames from "$lib/utils/classNames"
 	import Switch from '$lib/shared/components/forms/switch/template.svelte';
 	import Select from '$lib/shared/components/forms/select/template.svelte';
 	import Cart from '$lib/shared/components/elements/cart/template.svelte';
 	import { siteSettings } from '$lib/shared/stores/siteSettings.js';
-
-	import Stretch from 'svelte-loading-spinners/Stretch.svelte';
-	import { navigating } from '$app/stores';
 
 	function handleOnChange(event) {
 		const jsonString = JSON.stringify({ ...$siteSettings, isDarkMode: event.detail.value });
@@ -91,9 +87,3 @@
 		</div>
 	</div>
 </div>
-
-{#if $navigating}
-	<div class="fixed bottom-0 inset-x-0 mx-auto z-40 w-[65px] text-center">
-		<Stretch size="60" color="#FF3E00" unit="px" duration="1s" />
-	</div>
-{/if}
