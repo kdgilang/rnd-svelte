@@ -1,5 +1,4 @@
 <script>
-	import { goto } from '$app/navigation';
 	import { sendVerificationRepository, verificationRepository } from '$lib/data/repositories/userRepositories.js';
 	import Stretch from 'svelte-loading-spinners/Stretch.svelte';
   import Cookies from 'js-cookie';
@@ -25,6 +24,35 @@
     }, 1000);
   });
 
+  async function sendCodeVerification() {
+    if (isBusy) return
+
+    try {
+      error = '';
+      isBusy = true;
+      const code = codes.join('');
+
+      const resVerify = await verificationRepository({
+        code,
+        waNumber
+      });
+
+      if (resVerify?.error) {
+        throw resVerify?.error;
+      }
+
+      Cookies.remove('waNumber');
+
+      Cookies.set('userToken', resVerify.token, { expires: 1, secure: true });
+
+      window.location.href = `/users/${resVerify.userId}`;
+    } catch(err) {
+      error = err;
+    } finally {
+      isBusy = false;
+    }
+  }
+
   const handleKeyUp = async (e) => {
     if(e.key === 'Backspace') {
       e?.target?.previousElementSibling?.focus();
@@ -33,31 +61,7 @@
     }
 
     if (codes.length === 6 && (!codes.includes(undefined) && !codes.includes(''))) {
-
-      if (isBusy) return
-
-      try {
-        error = '';
-        isBusy = true;
-        const code = codes.join('');
-
-        const resVerify = await verificationRepository({
-          code,
-          waNumber
-        });
-
-        if (resVerify?.error) {
-          throw resVerify?.error;
-        }
-
-        Cookies.remove('waNumber');
-
-        goto('/');
-      } catch(err) {
-        error = err;
-      } finally {
-        isBusy = false;
-      }
+      await sendCodeVerification();
     }
   }
 
@@ -94,10 +98,11 @@
     }
   }
 
-  const handlePaste = async (e) => {
+  const handlePasteCode = async () => {
     try {
       const clipCode = await navigator.clipboard.readText();
       codes = clipCode.split('')
+      await sendCodeVerification();
     } catch (err) {
       console.log(err);
     }
@@ -135,12 +140,12 @@
           </div>
           
           <div id="otp" class="flex flex-row justify-center text-center px-2 mt-5">
-            <input on:keyup={handleKeyUp} on:paste={handlePaste} bind:value={codes[0]} class="m-1 border h-10 w-10 text-center form-control rounded text-slate-900 bg-slate-100" type="text" maxlength="1" /> 
-            <input on:keyup={handleKeyUp} on:paste={handlePaste} bind:value={codes[1]} class="m-1 border h-10 w-10 text-center form-control rounded text-slate-900 bg-slate-100" type="text" maxlength="1" /> 
-            <input on:keyup={handleKeyUp} on:paste={handlePaste} bind:value={codes[2]} class="m-1 border h-10 w-10 text-center form-control rounded text-slate-900 bg-slate-100" type="text" maxlength="1" /> 
-            <input on:keyup={handleKeyUp} on:paste={handlePaste} bind:value={codes[3]} class="m-1 border h-10 w-10 text-center form-control rounded text-slate-900 bg-slate-100" type="text" maxlength="1" />
-            <input on:keyup={handleKeyUp} on:paste={handlePaste} bind:value={codes[4]} class="m-1 border h-10 w-10 text-center form-control rounded text-slate-900 bg-slate-100" type="text" maxlength="1" /> 
-            <input on:keyup={handleKeyUp} on:paste={handlePaste} bind:value={codes[5]} class="m-1 border h-10 w-10 text-center form-control rounded text-slate-900 bg-slate-100" type="text" maxlength="1" />
+            <input on:keyup={handleKeyUp} on:paste={handlePasteCode} bind:value={codes[0]} class="m-1 border h-10 w-10 text-center form-control rounded text-slate-900 bg-slate-100" type="text" maxlength="1" /> 
+            <input on:keyup={handleKeyUp} on:paste={handlePasteCode} bind:value={codes[1]} class="m-1 border h-10 w-10 text-center form-control rounded text-slate-900 bg-slate-100" type="text" maxlength="1" /> 
+            <input on:keyup={handleKeyUp} on:paste={handlePasteCode} bind:value={codes[2]} class="m-1 border h-10 w-10 text-center form-control rounded text-slate-900 bg-slate-100" type="text" maxlength="1" /> 
+            <input on:keyup={handleKeyUp} on:paste={handlePasteCode} bind:value={codes[3]} class="m-1 border h-10 w-10 text-center form-control rounded text-slate-900 bg-slate-100" type="text" maxlength="1" />
+            <input on:keyup={handleKeyUp} on:paste={handlePasteCode} bind:value={codes[4]} class="m-1 border h-10 w-10 text-center form-control rounded text-slate-900 bg-slate-100" type="text" maxlength="1" /> 
+            <input on:keyup={handleKeyUp} on:paste={handlePasteCode} bind:value={codes[5]} class="m-1 border h-10 w-10 text-center form-control rounded text-slate-900 bg-slate-100" type="text" maxlength="1" />
           </div>
           
           <div class="flex justify-center text-center mt-5">

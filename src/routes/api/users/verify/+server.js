@@ -3,9 +3,8 @@ import { UsersModel } from '$lib/data/models/users';
 import { connectDB, disconnectDB } from '$lib/data';
 import { JWT_SECRET_KEY } from '$env/static/private';
 import jwt from 'jsonwebtoken';
-// import Cookies from 'js-cookie';
 
-export const POST = async ({request, cookies}) => {
+export const POST = async ({request}) => {
   try {
     const { waNumber, code } = await request.json();
 
@@ -23,13 +22,8 @@ export const POST = async ({request, cookies}) => {
       await user.save();
 
       const token = jwt.sign({ user }, JWT_SECRET_KEY, { expiresIn: '3h' });
-      cookies.set('userToken', token, {
-        path: '/',
-        maxAge: 60 * 60 * 3,
-        httpOnly: true,
-      });
   
-      return json({ status: true, message: 'success' });
+      return json({ status: true, message: 'success', token, userId: user._id });
     } else {
       throw 'Not Found';
     }

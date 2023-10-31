@@ -11,21 +11,9 @@
 	}
 
 	const user = getContext('user');
-
-	/**
-	 * @param {object} data
-	 * @param {Array.<string>} data.categories
-	 */
-	export let data;
-	/**
-	 * @type {string}
-	 */
-	let category;
 </script>
 
-<div
-	class="sticky top-0 z-40 w-full backdrop-blur flex-none transition-colors lg:z-50 lg:border-b lg:border-slate-900/10 dark:border-yellow/40 bg-white supports-backdrop-blur:bg-white/95 dark:bg-slate-900/75"
->
+<div class="sticky top-0 z-40 w-full backdrop-blur flex-none transition-colors lg:z-50 lg:border-b lg:border-slate-900/10 dark:border-yellow/40 bg-white supports-backdrop-blur:bg-white/95 dark:bg-slate-900/75">
 	<div class="py-4 border-b lg:border-0 border-yellow/40">
 		<div class="container relative flex items-center">
 			<div class="flex items-center">

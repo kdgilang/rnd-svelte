@@ -6,7 +6,6 @@
     authRepository
   } from "$lib/data/repositories/userRepositories";
   
-  let name = '';
   let waNumber = '';
   let waNumberFormatted = '';
   let error = '';
@@ -26,7 +25,6 @@
       isBusy = true;
 
       const res = await authRepository({
-        name,
         waNumber: waNumberFormatted
       });
 
@@ -74,10 +72,6 @@
       </h1>
       <form class="space-y-4 md:space-y-6" action="#" on:submit|preventDefault={handleSubmit}>
         <div>
-          <label for="name" class="block mb-2 text-sm font-medium text-slate-900 dark:text-slate-100">Name</label>
-          <input bind:value="{name}" type="text" name="name" id="name" class="bg-slate-100 border border-slate-300 text-slate-900 sm:text-sm rounded-md focus:ring-yellow-600 focus:border-yellow-600 block w-full p-2.5 dark:bg-slate-700 dark:border-slate-600 dark:placeholder-slate-400 dark:text-slate-100 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="ex: Megachan" required>
-        </div>
-        <div>
           <label for="phone" class="block mb-2 text-sm font-medium text-slate-900 dark:text-slate-100">Whatsapp number</label>
           <div class="relative border border-slate-300 rounded-md dark:border-slate-600 overflow-hidden">
             <div class="absolute bg-slate-100 dark:bg-slate-900 inset-y-0 left-0 flex items-center px-2.5 pointer-events-none">
@@ -93,7 +87,7 @@
         >Sign in</button>
         {#if isBusy}
           <div class="flex justify-center">
-            <Stretch size="55" color="#FF3E00" unit="px" duration="1s" />
+            <Stretch size="55" color="#FFA31A" unit="px" duration="1s" />
           </div>
         {/if}
       </form>

@@ -3,7 +3,7 @@ import { createUserRepository, sendVerificationRepository } from "$lib/data/repo
 
 export const POST = async ({request}) => {
   try {
-    const { name, waNumber } = await request.json();
+    const { waNumber } = await request.json();
 
     const res = await sendVerificationRepository(waNumber);
 
@@ -12,7 +12,7 @@ export const POST = async ({request}) => {
     }
 
     await createUserRepository({
-      name,
+      name: '',
       waNumber: res.waNumber,
       verification: {
         status: false,
