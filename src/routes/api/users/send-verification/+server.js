@@ -2,6 +2,7 @@ import { json } from '@sveltejs/kit';
 import { UsersModel } from '$lib/data/models/users';
 import { sendVerificationCodeService } from "$lib/shared/services/waServices";
 import { connectDB, disconnectDB } from '$lib/data';
+import dayjs from 'dayjs';
 
 export const POST = async ({request}) => {
   try {
@@ -10,11 +11,18 @@ export const POST = async ({request}) => {
     await connectDB();
   
     const user = await UsersModel.findOne({ waNumber }).exec();
+
+    if (user?.verification?.date) {
+      const vDate = dayjs(user?.verification?.date);
+      const seconds = dayjs().diff(vDate, 'second');
+
+      if (seconds < 60) {
+        throw `Resend code available in ${60 - seconds} seconds.`;
+      }
+    }
   
-    await disconnectDB();
-  
-    var minm = 100000;
-    var maxm = 999999;
+    const minm = 100000;
+    const maxm = 999999;
   
     const code = Math.floor(Math
     .random() * (maxm - minm + 1)) + minm;
@@ -22,11 +30,19 @@ export const POST = async ({request}) => {
     // send or resend code
     const res = await sendVerificationCodeService({
       waNumber,
-      code: user?.verification?.code || code
+      code
     });
 
+    if (user) {
+      user.verification.code = code;
+      user.verification.date = Date.now();
+      await user.save();
+    }
+
+    await disconnectDB();
+
     return json(res)
-  } catch (err) {
-    return json(err)
+  } catch (error) {
+    return json({ error })
   }
 }

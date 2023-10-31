@@ -6,16 +6,17 @@ import { connectDB, disconnectDB } from '$lib/data';
 export const POST = async ({request}) => {
   try {
     const { name, waNumber } = await request.json();
+    
     const res = await sendVerificationRepository(waNumber);
 
     if (res?.error) {
       throw res?.error;
     }
 
-    await connectDB();
-    const user = await UsersModel.findOne({ waNumber }).exec();
+    // await connectDB();
+    // const user = await UsersModel.findOne({ waNumber }).exec();
 
-    const resUser = await createUserRepository({
+    await createUserRepository({
       name,
       waNumber: res.waNumber,
       verification: {
@@ -24,12 +25,12 @@ export const POST = async ({request}) => {
       }
     });
 
-    if (resUser?.keyPattern && !user?.verification?.code) {
-      user.verification.code = res.code;
-      await user.save();
-    }
+    // if (resUser?.keyPattern && !user?.verification?.code) {
+    //   user.verification.code = res.code;
+    //   await user.save();
+    // }
 
-    await disconnectDB();
+    // await disconnectDB();
 
     return json({ status: true, message: 'success', waNumber });
   } catch (err) {
