@@ -1,13 +1,16 @@
 <script>
 	import Switch from '$lib/shared/components/forms/switch/template.svelte';
-	import Select from '$lib/shared/components/forms/select/template.svelte';
+	// import Select from '$lib/shared/components/forms/select/template.svelte';
 	import Cart from '$lib/shared/components/elements/cart/template.svelte';
 	import { siteSettings } from '$lib/shared/stores/siteSettings.js';
+	import { getContext } from 'svelte';
 
 	function handleOnChange(event) {
 		const jsonString = JSON.stringify({ ...$siteSettings, isDarkMode: event.detail.value });
 		localStorage.setItem('siteSettings', jsonString);
 	}
+
+	const user = getContext('user');
 
 	/**
 	 * @param {object} data
@@ -26,8 +29,8 @@
 	<div class="py-4 border-b lg:border-0 border-yellow/40">
 		<div class="container relative flex items-center">
 			<div class="flex items-center">
-				<a class="mr-3 w-[2.0625rem] overflow-hidden md:w-auto hidden sm:block" href="/">
-					<span class="sr-only">AI News home page</span>
+				<a class="mr-3 w-[2.0625rem] overflow-hidden md:w-auto hidden sm:block" href="/" aria-label="go home">
+					<span class="sr-only">Web store home page</span>
 					<img src="/logo2.png" alt="Store hub logo" width="100" height="50" class="dark:hidden" />
 					<img
 						src="/logo-dark.png"
@@ -37,17 +40,30 @@
 						class="hidden dark:inline"
 					/>
 				</a>
-				<Select name="Category" defaultValue="Category" items={data.categories} bind:value={category} />
+				<!-- <Select name="Category" defaultValue="Category" items={data.categories} bind:value={category} /> -->
 				<Cart />
 			</div>
 			<div class="ml-auto flex gap-5 items-center dark:border-slate-800">
+				{#if user}
 				<a
-					href="/signin"
+					href={`/users/${user._id}`}
+					title="profile"
+					aria-label="profile"
 					class="ml-6 flex text-slate-700 justify-center items-center gap-2 dark:text-slate-200 hover:text-slate-500 dark:hover:text-slate-300"
 				>
-          <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" class="w-5 h-5" fill="currentColor"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M352 96l64 0c17.7 0 32 14.3 32 32l0 256c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l64 0c53 0 96-43 96-96l0-256c0-53-43-96-96-96l-64 0c-17.7 0-32 14.3-32 32s14.3 32 32 32zm-9.4 182.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L242.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l210.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"/></svg>
+					<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512" class="w-5 h-5" fill="currentColor"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg>
+					<span class="sr-only">Profile</span>
+				</a>
+				{:else}
+				<a
+					href="/signin"
+					aria-label="signin"
+					class="ml-6 flex text-slate-700 justify-center items-center gap-2 dark:text-slate-200 hover:text-slate-500 dark:hover:text-slate-300"
+				>
+					<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" class="w-5 h-5" fill="currentColor"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M352 96l64 0c17.7 0 32 14.3 32 32l0 256c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l64 0c53 0 96-43 96-96l0-256c0-53-43-96-96-96l-64 0c-17.7 0-32 14.3-32 32s14.3 32 32 32zm-9.4 182.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L242.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l210.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"/></svg>
 					<span class="text-xs">Sigin</span>
 				</a>
+				{/if}
 				<Switch bind:checked={$siteSettings.isDarkMode} on:change={handleOnChange}>
 					<svelte:fragment slot="icon-indicator">
 						<svg
@@ -74,7 +90,7 @@
 					href="https://github.com/kdgilang"
 					rel="noopener noreferrer"
 					target="_blank"
-					class=" block text-slate-700 dark:text-slate-200 hover:text-slate-500 dark:hover:text-slate-300"
+					class="block text-slate-700 dark:text-slate-200 hover:text-slate-500 dark:hover:text-slate-300"
 				>
 					<span class="sr-only">Fake store on GitHub</span>
 					<svg viewBox="0 0 16 16" class="w-5 h-5" fill="currentColor" aria-hidden="true">

@@ -30,13 +30,11 @@
         waNumber: waNumberFormatted
       });
 
-      if(!res.status) {
-        error = res.message;
-        return;
+      if(res?.error) {
+        throw res?.error;
       }
 
       Cookies.set('waNumber', res.waNumber, { expires: 1 });
-
       goto('/verification');
     } catch (err) {
       error = err;
@@ -75,17 +73,17 @@
           Sign in to your account
       </h1>
       <form class="space-y-4 md:space-y-6" action="#" on:submit|preventDefault={handleSubmit}>
-          <div>
-              <label for="name" class="block mb-2 text-sm font-medium text-slate-900 dark:text-slate-100">Name</label>
-              <input bind:value="{name}" type="text" name="name" id="name" class="bg-slate-100 border border-slate-300 text-slate-900 sm:text-sm rounded-md focus:ring-yellow-600 focus:border-yellow-600 block w-full p-2.5 dark:bg-slate-700 dark:border-slate-600 dark:placeholder-slate-400 dark:text-slate-100 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="ex: Megachan" required>
-          </div>
+        <div>
+          <label for="name" class="block mb-2 text-sm font-medium text-slate-900 dark:text-slate-100">Name</label>
+          <input bind:value="{name}" type="text" name="name" id="name" class="bg-slate-100 border border-slate-300 text-slate-900 sm:text-sm rounded-md focus:ring-yellow-600 focus:border-yellow-600 block w-full p-2.5 dark:bg-slate-700 dark:border-slate-600 dark:placeholder-slate-400 dark:text-slate-100 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="ex: Megachan" required>
+        </div>
         <div>
           <label for="phone" class="block mb-2 text-sm font-medium text-slate-900 dark:text-slate-100">Whatsapp number</label>
           <div class="relative border border-slate-300 rounded-md dark:border-slate-600 overflow-hidden">
-              <div class="absolute bg-slate-100 dark:bg-slate-900 inset-y-0 left-0 flex items-center px-2.5 pointer-events-none">
-                  <span class="text-slate-500 dark:text-slate-400 block">+62</span>
-              </div>
-              <input bind:value="{waNumber}" type="phone" name="phone" id="phone" class="rounded-md pl-14 bg-slate-100 text-slate-900 sm:text-sm focus:ring-yellow-600 focus:border-yellow-600 block w-full p-2.5 dark:bg-slate-700 dark:placeholder-slate-400 dark:text-slate-100 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="ex: 08123456789" required>
+            <div class="absolute bg-slate-100 dark:bg-slate-900 inset-y-0 left-0 flex items-center px-2.5 pointer-events-none">
+              <span class="text-slate-500 dark:text-slate-400 block">+62</span>
+            </div>
+            <input bind:value="{waNumber}" type="phone" name="phone" id="phone" class="rounded-md pl-14 bg-slate-100 text-slate-900 sm:text-sm focus:ring-yellow-600 focus:border-yellow-600 block w-full p-2.5 dark:bg-slate-700 dark:placeholder-slate-400 dark:text-slate-100 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="ex: 08123456789" required>
           </div>
         </div>
         <button

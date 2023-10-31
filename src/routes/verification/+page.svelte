@@ -3,13 +3,27 @@
 	import { sendVerificationRepository, verificationRepository } from '$lib/data/repositories/userRepositories.js';
 	import Stretch from 'svelte-loading-spinners/Stretch.svelte';
   import Cookies from 'js-cookie';
+	import { onMount } from 'svelte';
 
   export let data;
   let codes = []
   let isBusy = false;
   let error = '';
+  let resendInseconds = 0;
 
   const { waNumber } = data;
+
+  onMount(() => {
+    const interval = setInterval(() => {
+      if (resendInseconds > 0) {
+        resendInseconds--;
+      }
+
+      return () => {
+        clearInterval(interval);
+      };
+    }, 1000);
+  });
 
   const handleKeyUp = async (e) => {
     if(e.key === 'Backspace') {
@@ -32,16 +46,15 @@
           waNumber
         });
 
-        if (!resVerify.status) {
-          throw 'Verification failed.';
+        if (resVerify?.error) {
+          throw resVerify?.error;
         }
 
         Cookies.remove('waNumber');
-          // Cookies.set('userToken', resVerify.token, { expiresIn: '3h' });
 
-          goto('/');
+        goto('/');
       } catch(err) {
-        error = 'Verification failed.';
+        error = err;
       } finally {
         isBusy = false;
       }
@@ -49,25 +62,37 @@
   }
 
   const handleResendCode = async () => {
-    if (isBusy) return
+    if (isBusy || resendInseconds) return
 
     try {
       error = '';
       isBusy = true;
-      
+
       const res = await sendVerificationRepository(waNumber);
 
       if (res?.error) {
         throw res.error;
       }
-
+      
     } catch(err) {
+      const seconds = err?.split('(')?.[1]?.split(')')?.[0];
+      resendInseconds = Number(seconds);
+
+      if (seconds) {
+        const interval = setInterval(() => {
+          resendInseconds--;
+
+          return () => {
+            clearInterval(interval);
+          };
+        }, 1000);
+      }
+
       error = err;
     } finally {
       isBusy = false;
     }
   }
-
 
   const handlePaste = async (e) => {
     try {
@@ -119,7 +144,11 @@
           </div>
           
           <div class="flex justify-center text-center mt-5">
-            <button on:click|preventDefault={handleResendCode} class="flex items-center text-yellow hover:text-yellow/70 transition underline text-xs"><span class="font-bold">Resend code</span><i class='bx bx-caret-right ml-1'></i></button>
+            <button
+              disabled={resendInseconds}
+              on:click|preventDefault={handleResendCode} class="flex items-center text-yellow hover:text-yellow/70 transition underline text-xs">
+              <span class="font-bold">Resend code { resendInseconds ? `in ${resendInseconds} seconds.` : ''}
+            </button>
           </div>
 
           {#if isBusy}

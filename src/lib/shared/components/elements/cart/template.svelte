@@ -17,7 +17,7 @@
 			viewBox="0 0 24 24"
 			stroke-width="1.5"
 			stroke="currentColor"
-			class="file: mt-2 h-4 w-4 text-slate-700 dark:text-slate-200"
+			class="file: mt-2 h-5 w-5 text-slate-700 dark:text-slate-200"
 		>
 			<path
 				stroke-linecap="round"

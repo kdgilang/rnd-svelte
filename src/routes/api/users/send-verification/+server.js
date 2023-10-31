@@ -12,12 +12,13 @@ export const POST = async ({request}) => {
   
     const user = await UsersModel.findOne({ waNumber }).exec();
 
+    // validate: resend code every 60 seconds
     if (user?.verification?.date) {
       const vDate = dayjs(user?.verification?.date);
       const seconds = dayjs().diff(vDate, 'second');
 
       if (seconds < 60) {
-        throw `Resend code available in ${60 - seconds} seconds.`;
+        throw `Resend code available in (${60 - seconds}) seconds.`;
       }
     }
   

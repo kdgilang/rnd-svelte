@@ -1,6 +1,6 @@
 <script>
 	import '../app.css';
-	import { onMount } from 'svelte';
+	import { onMount, setContext } from 'svelte';
 	import { siteSettings } from '$lib/shared/stores/siteSettings.js';
 	import Header from '$lib/shared/components/layouts/header/template.svelte';
 	import Jellyfish from 'svelte-loading-spinners/Jellyfish.svelte';
@@ -8,6 +8,8 @@
 
 	/** @type {import('./$types').LayoutData} */
 	export let data;
+
+	setContext('user', data?.user);
 
 	onMount(() => {
 		// Init Dark Mode

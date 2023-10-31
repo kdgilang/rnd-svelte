@@ -22,21 +22,18 @@ export const POST = async ({request, cookies}) => {
       user.verification.date = Date.now();
       await user.save();
 
-      const token = jwt.sign({ ...user }, JWT_SECRET_KEY, { expiresIn: '3h' });
+      const token = jwt.sign({ user }, JWT_SECRET_KEY, { expiresIn: '3h' });
       cookies.set('userToken', token, {
         path: '/',
         maxAge: 60 * 60 * 3,
         httpOnly: true,
       });
-
-      // var decoded = jwt.verify(token, 'shhhhh');
-      // console.log(decoded.foo)
   
       return json({ status: true, message: 'success' });
     } else {
-      return json({ status: false, message: 'Not Found' });
+      throw 'Not Found';
     }
-  } catch(err) {
-    return json({ status: false, message: err });
+  } catch(error) {
+    return json({ error });
   }
 }
