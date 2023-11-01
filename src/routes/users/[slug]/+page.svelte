@@ -22,7 +22,7 @@
 </script>
 
 <div class="container">
-  <div class="w-full bg-white rounded-md shadow md:max-w-2xl mx-auto dark:bg-slate-700">
+  <div class="w-full bg-white rounded-md shadow md:max-w-2xl mx-auto dark:bg-slate-900">
     <div class="text-sm font-medium text-center text-slate-900 border-b border-slate-500 dark:text-slate-100">
       <ul class="flex -mb-px">
         {#each tabItems as item}

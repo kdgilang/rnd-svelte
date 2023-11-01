@@ -71,7 +71,7 @@
 	}
 </script>
 
-<h1 class="mb-10 text-center text-2xl font-bold text-slate-500">Cart Items</h1>
+<h1 class="mb-10 text-center text-2xl font-bold text-slate-700 dark:text-slate-500">Cart Items</h1>
 <div class="mx-auto container">
   <div class="w-100 mb-4">
     <a
@@ -135,7 +135,7 @@
                 </button>
               </div>
               <div class="flex items-center justify-end">
-                <p class="text-lg text-green">{item?.product?.price}</p>
+                <p class="text-lg text-green">{priceFormatted(item?.product?.price)}</p>
               </div>
             </div>
           </div>
@@ -153,7 +153,7 @@
     </div>
     <!-- Sub total -->
     <div
-      class="mt-6 h-full rounded text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-900 p-6 shadow-md md:mt-0 md:w-1/3"
+      class="mt-6 h-full rounded text-slate-700 dark:text-slate-500 bg-white dark:bg-slate-900 p-6 shadow-md md:mt-0 md:w-1/3"
     >
       {#each $cartStore.items as item}
         <div class="mb-2 flex justify-between">
