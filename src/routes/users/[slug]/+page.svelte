@@ -1,7 +1,16 @@
 <script>
   import ProfileForm from '$lib/shared/components/forms/profile/template.svelte';
+  
   let tabItems = ['Profile', 'Orders', 'Settings'];
   let activeTab = 'Profile';
+  let isBusy = false;
+
+
+  const handleLogout = () => {
+    isBusy = true;
+    Cookies.remove('userToken');
+    window.location.href = '/';
+  }
 </script>
 
 <div class="container">
@@ -9,7 +18,7 @@
     <div
       class="text-sm font-medium text-center text-slate-900 border-b border-slate-500 dark:text-slate-100"
     >
-      <ul class="flex flex-wrap -mb-px">
+      <ul class="flex -mb-px">
         {#each tabItems as item}
           <li>
             <button
@@ -21,6 +30,14 @@
             >
           </li>
         {/each}
+        <li class="w-full flex justify-end">
+          <a
+            href="javascript"
+            on:click|preventDefault={handleLogout}
+            class="inline-block p-4 hover:border-b-2 transition rounded-t-lg hover:text-yellow hover:border-yellow"
+            disabled={isBusy}
+          >Logout</a>
+        </li>
       </ul>
     </div>
 

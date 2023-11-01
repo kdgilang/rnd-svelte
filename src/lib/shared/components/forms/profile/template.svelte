@@ -15,11 +15,6 @@
   const handleSubmit = async () => {
 
   }
-
-  const handleLogout = () => {
-    Cookies.remove('userToken');
-    window.location.href = '/';
-  }
   
 </script>
 <form class="space-y-4 md:space-y-6" action="#" on:submit|preventDefault={handleSubmit}>
@@ -46,12 +41,6 @@
       class="px-4 rounded-md bg-yellow py-1.5 font-medium text-black hover:opacity-70 transition disabled:bg-yellow disabled:text-white disabled:opacity-25"
       disabled={isBusy}
     >Save</button>
-    <a
-      href="javascript"
-      on:click|preventDefault={handleLogout}
-      class="px-4 text-sm underline rounded-md py-1.5 font-medium hover:opacity-70 text-slate-200 transition disabled:opacity-25"
-      disabled={isBusy}
-    >Logout</a>
   </div>
   {#if isBusy}
     <div class="flex justify-center">

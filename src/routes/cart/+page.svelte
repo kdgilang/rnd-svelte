@@ -62,7 +62,7 @@
       console.log(res)
 
       if (res?.errors?.length) {
-        alert(JSON.stringify(res?.errors));
+        // alert(JSON.stringify(res?.errors));
         return
       }
 
