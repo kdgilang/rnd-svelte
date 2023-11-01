@@ -7,6 +7,8 @@ export const POST = async ({request}) => {
 
     const res = await sendVerificationService(waNumber);
 
+    console.log(res);
+
     if (res?.error) {
       throw res?.error;
     }

@@ -142,7 +142,7 @@
         </div>
       {:else}
         <div
-          class="text-center rounded text-slate-700 dark:text-slate-200 bg-slate-200 dark:bg-slate-700 p-6 shadow-md"
+          class="text-center rounded text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-900 p-6 shadow-md"
         >
           <p class="mb-4">No carts found.</p>
           <a href="/" class="rounded bg-yellow hover:opacity-25 transition px-4 py-2 text-black"

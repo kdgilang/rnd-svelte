@@ -71,6 +71,7 @@
     try {
       error = '';
       isBusy = true;
+      codes = [];
 
       const res = await sendVerificationService(waNumber);
 

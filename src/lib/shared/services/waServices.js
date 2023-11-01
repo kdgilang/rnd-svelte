@@ -44,7 +44,7 @@ export const sendVerificationCodeService = async ({ waNumber, code }) => {
       throw res?.error?.message || res.error.error_data.details;
     }
 
-    return { waNumber: res?.contacts?.[0].input, code }
+    return { waNumber: res?.contacts?.[0].input }
   } catch (error) {
     return { error };
   }
