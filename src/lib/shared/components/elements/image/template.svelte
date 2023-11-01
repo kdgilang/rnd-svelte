@@ -26,9 +26,9 @@
 
 
 {#if loaded}
-	<img {src} alt={alt} class="w-full h-full w-full h-full object-center object-cover rounded" />
+	<img {src} alt={alt} class="w-full h-full w-full h-full object-center object-cover rounded bg-slate-500" />
 {:else if failed}
-	<img src="https://icon-library.com/images/not-found-icon/not-found-icon-20.jpg" alt="Not Found" />
+	<img src="https://icon-library.com/images/not-found-icon/not-found-icon-20.jpg" class="bg-slate-500" alt="Not Found" />
 {:else if loading}
     <div class="skeleton-box h-full w-full"></div>
 {/if}

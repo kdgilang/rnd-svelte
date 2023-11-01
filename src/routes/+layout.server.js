@@ -1,13 +1,15 @@
 import { JWT_SECRET_KEY } from '$env/static/private';
 import { redirect } from '@sveltejs/kit';
 import { UsersModel } from '$lib/data/models/users';
+import { ProductsModel } from '$lib/data/models/products';
 import jwt from 'jsonwebtoken';
 
 /** @type {import('./$types').LayoutServerLoad} */
 export async function load({ route, cookies }) {
   try {
-    // init user table
+    // Init schema collections
     UsersModel();
+    ProductsModel();
 
     const token = cookies.get('userToken');
     const userData = token ? jwt.verify(token, JWT_SECRET_KEY) : '';

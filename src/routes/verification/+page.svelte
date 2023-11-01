@@ -131,7 +131,7 @@
       </div>
       {/if}
 
-      <div class="bg-white rounded-md shadow dark:border dark:bg-slate-700 dark:border-slate-700 py-4 text-center text-slate-900 dark:text-slate-100">
+      <div class="bg-white rounded-md shadow dark:border dark:bg-slate-900 dark:border-slate-900 py-4 text-center text-slate-900 dark:text-slate-200">
         <h1 class="text-2xl font-bold">Verification code</h1>
         <div class="flex flex-col mt-4">
           <span>Enter the verification code you received at</span>

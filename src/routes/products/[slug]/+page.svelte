@@ -37,7 +37,7 @@
 
 <div class="container">
 	<section
-		class="body-font rounded overflow-hidden text-slate-700 dark:text-slate-200 bg-slate-200 dark:bg-slate-700"
+		class="body-font rounded overflow-hidden text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-900"
 	>
 		<div class="container px-5 py-24 mx-auto">
 			<div class="lg:w-4/5 mx-auto flex flex-wrap">
@@ -192,7 +192,7 @@
 	bind:this={dialog}
 	on:close={() => (showModal = false)}
 	on:click|self={() => dialog.close()}
-	class="text-slate-700 dark:text-slate-200 bg-slate-200 dark:bg-slate-700"
+	class="text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-900"
 >
 	<!-- svelte-ignore a11y-no-static-element-interactions -->
 	<div on:click|stopPropagation>

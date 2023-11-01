@@ -5,8 +5,7 @@
 	import {
     PUBLIC_BASE_URL,
 		PUBLIC_FLIP_API_HOST,
-		PUBLIC_FLIP_API_KEY,
-		PUBLIC_LOCAL_API_HOST
+		PUBLIC_FLIP_API_KEY
 	} from '$env/static/public';
 	import { dateFormatted } from '$lib/shared/utils/dateFormatted';
 
@@ -60,7 +59,6 @@
 			const res = await (await fetch(`${PUBLIC_FLIP_API_HOST}/bill`, requestOptions)).json();
 
       if (res?.errors?.length) {
-        // alert(JSON.stringify(res?.errors));
         return
       }
 
@@ -97,7 +95,7 @@
 			<div class="rounded-lg md:w-2/3">
 				{#each $cartStore.items as item}
 					<div
-						class="justify-between mb-6 rounded text-slate-700 dark:text-slate-200 bg-slate-200 dark:bg-slate-700 p-6 shadow-md sm:flex sm:justify-start"
+						class="justify-between mb-6 rounded text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-900 p-6 shadow-md sm:flex sm:justify-start"
 					>
 						<img
 							src={item?.product?.image}
@@ -108,10 +106,10 @@
 							<div class="mt-5 sm:mt-0">
 								<h2 class="text-lg font-bold text-gray-900">{item?.product?.title}</h2>
 								<p class="mt-1 text-xs">
-									cream: {item?.cream?.title} ({item?.cream.price.idrFormatted})
+									cream: {item?.cream?.title} ({item?.cream?.price?.idrFormatted})
 								</p>
 								<p class="mt-1 text-xs">
-									topping: {item?.topping?.title || '-'} ({item?.topping.price.idrFormatted})
+									topping: {item?.topping?.title || '-'} ({item?.topping?.price?.idrFormatted})
 								</p>
 							</div>
 							<div
@@ -151,7 +149,7 @@
 						class="text-center rounded text-slate-700 dark:text-slate-200 bg-slate-200 dark:bg-slate-700 p-6 shadow-md"
 					>
 						<p class="mb-4">No carts found.</p>
-						<a href="/" class="rounded bg-yellow hover:bg-black transition px-4 py-2 text-black"
+						<a href="/" class="rounded bg-yellow hover:opacity-25 transition px-4 py-2 text-black"
 							>Go shop</a
 						>
 					</div>
@@ -159,7 +157,7 @@
 			</div>
 			<!-- Sub total -->
 			<div
-				class="mt-6 h-full rounded text-slate-700 dark:text-slate-200 bg-slate-200 dark:bg-slate-700 p-6 shadow-md md:mt-0 md:w-1/3"
+				class="mt-6 h-full rounded text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-900 p-6 shadow-md md:mt-0 md:w-1/3"
 			>
 				{#each $cartStore.items as item}
 					<div class="mb-2 flex justify-between">
@@ -211,13 +209,3 @@
 		</div>
 	</div>
 </div>
-
-<style>
-	/* @layer utilities {
-		input[type='number']::-webkit-inner-spin-button,
-		input[type='number']::-webkit-outer-spin-button {
-			-webkit-appearance: none;
-			margin: 0;
-		}
-	} */
-</style>

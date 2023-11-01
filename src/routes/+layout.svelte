@@ -28,7 +28,7 @@
 </script>
 
 <div class:dark={$siteSettings.isDarkMode}>
-	<div class="text-slate-700 dark:text-slate-100 min-h-screen bg-slate-100 dark:bg-slate-900">
+	<div class="text-slate-700 dark:text-slate-100 min-h-screen bg-slate-100 dark:bg-slate-700">
 		{#if errorMessage}
 		<div class="sticky top-0 w-full flex items-center p-4 mb-4 text-slate-100 bg-red/60" role="alert">
 		<svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
