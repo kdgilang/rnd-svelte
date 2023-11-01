@@ -1,5 +1,8 @@
 <script>
 	import Image from '$lib/shared/components/elements/image/template.svelte'
+	import { cartStore } from '$lib/shared/stores/cart';
+  import './style.scss';
+
 	/**
 	 * @typedef CardType
 	 * @type {Object}
@@ -13,6 +16,29 @@
 	 * @param {CardType} data
 	 */
 	export let data;
+
+  let showModal;
+  let dialog;
+  let note;
+  let qty = 1;
+
+  $: if (dialog && showModal) dialog.showModal();
+  const { product } = data;
+
+  function handleFormSubmit() {
+    const cartItems = [
+      ...$cartStore.items,
+      {
+        id: new Date().getTime(),
+        qty,
+        note,
+        product
+      }
+    ];
+    cartStore.updateItems(cartItems);
+
+    dialog.close();
+  }
 </script>
 
 <div class="relative m-10 flex w-full max-w-xs flex-col overflow-hidden rounded-lg bg-white text-slate-900 dark:text-slate-100 shadow-md dark:bg-slate-900">
@@ -46,10 +72,62 @@
       <span class="mr-2 ml-3 rounded bg-yellow px-2.5 py-0.5 text-xs font-semibold">5.0</span>
     </div>
     </div>
-    <button class="w-full flex items-center transition justify-center rounded-md bg-yellow px-5 py-2.5 text-center text-sm font-medium text-slate-900 hover:opacity-75 focus:outline-none focus:ring-4 focus:ring-blue-300">
+    <button
+      on:click|preventDefault={() => showModal = true }
+      class="w-full flex items-center transition justify-center rounded-md bg-yellow px-5 py-2.5 text-center text-sm font-medium text-slate-900 hover:opacity-75 focus:outline-none focus:ring-4 focus:ring-blue-300">
       <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
         <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
       </svg>
     Add to cart</button>
   </div>
 </div>
+
+<!-- svelte-ignore a11y-click-events-have-key-events a11y-no-noninteractive-element-interactions -->
+<dialog
+	bind:this={dialog}
+	on:close={() => (showModal = false)}
+	on:click|self={() => dialog.close()}
+	class="text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-900 w-1/2"
+>
+	<!-- svelte-ignore a11y-no-static-element-interactions -->
+	<div on:click|stopPropagation>
+		<form action="" on:submit|preventDefault={handleFormSubmit}>
+			
+      <div class="w-full mb-4">
+        <label for="qty" class="block mb-2 text-sm font-medium">Quantity</label>
+        <input
+          type="number"
+          id="qty"
+          min="1"
+          bind:value={qty}
+          class="bg-slate-200 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-yellow focus:border-yellow block w-full p-2.5 dark:border-slate-700 dark:placeholder-slate-400"
+        />
+      </div>
+      <div class="w-full mb-4">
+        <label for="note" class="block mb-2 text-sm font-medium">Note</label>
+        <input
+          type="text"
+          id="note"
+          placeholder="example: without jelly..."
+          bind:value={note}
+          class="bg-slate-200 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-yellow focus:border-yellow block w-full p-2.5 dark:border-slate-700 dark:placeholder-slate-400"
+        />
+      </div>
+
+			<!-- svelte-ignore a11y-autofocus -->
+			<div class="flex justify-between items-center">
+				<button
+					class="rounded h-10 bg-black px-5 border-0 inline-flex items-center hover:bg-opacity-75 justify-center transition text-white"
+					on:click|preventDefault={() => dialog.close()}>Cancel</button
+				>
+
+				<button
+					autofocus
+					class="text-black rounded h-10 bg-yellow px-5 border-0 inline-flex items-center hover:bg-opacity-75 justify-center ml-4 transition"
+				>
+					Add
+				</button>
+			</div>
+		</form>
+	</div>
+</dialog>
