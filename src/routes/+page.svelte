@@ -18,7 +18,7 @@
 			> -->
 
 			  
-				<Card data={product} />
+				<Card product={product} />
 			<!-- </a> -->
 		{:else}
 			<p class="text-center">No products found.</p>

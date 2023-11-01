@@ -13,9 +13,9 @@
 	 */
 
 	/**
-	 * @param {CardType} data
+	 * @param {CardType} product
 	 */
-	export let data;
+	export let product;
 
   let showModal;
   let dialog;
@@ -23,7 +23,6 @@
   let qty = 1;
 
   $: if (dialog && showModal) dialog.showModal();
-  const { product } = data;
 
   function handleFormSubmit() {
     const cartItems = [
@@ -43,15 +42,15 @@
 
 <div class="relative m-10 flex w-full max-w-xs flex-col overflow-hidden rounded-lg bg-white text-slate-900 dark:text-slate-100 shadow-md dark:bg-slate-900">
   <div class="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl">
-    <Image src={data?.images?.[0]} alt={`image of ${data?.name}`}/>
+    <Image src={product?.images?.[0]} alt={`image of ${product?.name}`}/>
     <span class="absolute top-0 left-0 m-2 rounded-full bg-black px-2 text-center text-sm font-medium text-white">20% OFF</span>
   </div>
   <div class="mt-4 px-5 pb-5">
-    <h5 class="text-xl tracking-tight">{data?.name}</h5>
+    <h5 class="text-xl tracking-tight">{product?.name}</h5>
     <div class="mt-2 mb-5 flex items-center justify-between">
     <p>
-      <span class="text-3xl font-bold">{data?.price}</span>
-      <span class="text-sm line-through">{data?.price + 2000}</span>
+      <span class="text-3xl font-bold">{product?.price}</span>
+      <span class="text-sm line-through">{product?.price + 2000}</span>
     </p>
     <div class="flex items-center">
       <svg aria-hidden="true" class="h-5 w-5 text-yellow" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -92,7 +91,6 @@
 	<!-- svelte-ignore a11y-no-static-element-interactions -->
 	<div on:click|stopPropagation>
 		<form action="" on:submit|preventDefault={handleFormSubmit}>
-			
       <div class="w-full mb-4">
         <label for="qty" class="block mb-2 text-sm font-medium">Quantity</label>
         <input
