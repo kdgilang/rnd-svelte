@@ -1,17 +1,34 @@
-import { dbProvider } from "$lib/shared/providers/dbProvider"
+import { UsersModel } from '$lib/data/models/users';
+import { connectDB, disconnectDB } from '$lib/data';
 
-export const createUserRepository = async (user) => {
-  return dbProvider('/users', 'POST', user)
+export const updateUserRepository = async (userId, newData) => {
+  try {
+    await connectDB();
+
+    newData.updated_date = Date.now();
+  
+    const userModel = await UsersModel.findOneAndUpdate({ _id: userId, }, {
+      ...newData
+    }).exec();
+  
+    if (!userModel) {
+      throw Error('User not found.');
+    }
+
+    await disconnectDB();
+  } catch (error) {
+    return { error }
+  }
 }
 
-export const verificationRepository = async (data) => {
-  return dbProvider('/users/verify', 'POST', data)
-}
-
-export const sendVerificationRepository = async (waNumber) => {
-  return dbProvider('/users/send-verification', 'POST', waNumber)
-}
-
-export const authRepository = async (data) => {
-  return dbProvider('/users/auth', 'POST', data)
+export const getUserByIdRepository = async (userId) => {
+  try {
+    await connectDB();
+    const user = await UsersModel.findOne({ _id: userId }).exec();
+    await disconnectDB();
+  
+    return user;
+  } catch(error) {
+    return { error }
+  }
 }

@@ -1,17 +1,17 @@
 import { json } from '@sveltejs/kit';
-import { createUserRepository, sendVerificationRepository } from "$lib/data/repositories/userRepositories";
+import { createUserService, sendVerificationService } from "$lib/shared/services/userServices";
 
 export const POST = async ({request}) => {
   try {
     const { waNumber } = await request.json();
 
-    const res = await sendVerificationRepository(waNumber);
+    const res = await sendVerificationService(waNumber);
 
     if (res?.error) {
       throw res?.error;
     }
 
-    await createUserRepository({
+    await createUserService({
       name: '',
       waNumber: res.waNumber,
       verification: {

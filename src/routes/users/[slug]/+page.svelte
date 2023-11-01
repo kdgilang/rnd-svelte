@@ -1,10 +1,18 @@
 <script>
   import ProfileForm from '$lib/shared/components/forms/profile/template.svelte';
+  import Cookies from 'js-cookie';
+	import { setContext } from 'svelte';
+
+  
+  export let form;
+  export let data;
   
   let tabItems = ['Profile', 'Orders', 'Settings'];
   let activeTab = 'Profile';
   let isBusy = false;
 
+  setContext('profileForm', form);
+  setContext('user', data?.user);
 
   const handleLogout = () => {
     isBusy = true;
@@ -15,9 +23,7 @@
 
 <div class="container">
   <div class="w-full bg-white rounded-md shadow md:max-w-2xl mx-auto dark:bg-slate-700">
-    <div
-      class="text-sm font-medium text-center text-slate-900 border-b border-slate-500 dark:text-slate-100"
-    >
+    <div class="text-sm font-medium text-center text-slate-900 border-b border-slate-500 dark:text-slate-100">
       <ul class="flex -mb-px">
         {#each tabItems as item}
           <li>

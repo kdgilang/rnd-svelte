@@ -59,8 +59,6 @@
 
 			const res = await (await fetch(`${PUBLIC_FLIP_API_HOST}/bill`, requestOptions)).json();
 
-      console.log(res)
-
       if (res?.errors?.length) {
         // alert(JSON.stringify(res?.errors));
         return
