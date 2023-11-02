@@ -17,6 +17,7 @@ export const POST = async ({request}) => {
     if (!user) {
       throw 'Not Found';
     }
+
     user.verification.code = '';
     user.verification.status = true;
     user.updated_date = Date.now();
@@ -27,6 +28,6 @@ export const POST = async ({request}) => {
 
     return json({ status: true, message: 'success', token, userId: user._id });
   } catch(error) {
-    return json({ error });
+    return json({ error, message: 'test' });
   }
 }
