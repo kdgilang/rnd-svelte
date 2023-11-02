@@ -1,21 +1,23 @@
 import { UsersModel } from '$lib/data/models/users';
 import { connectDB, disconnectDB } from '$lib/data';
 
-export const updateUserRepository = async (userId, newData) => {
+export const updateUserRepository = async (query, newData) => {
   try {
     await connectDB();
 
     newData.updated_date = Date.now();
   
-    const userModel = await UsersModel.findOneAndUpdate({ _id: userId, }, {
+    const userModel = await UsersModel.findOneAndUpdate(query, {
       ...newData
     }).exec();
   
     if (!userModel) {
-      throw Error('User not found.');
+      throw Error('Not found.');
     }
 
     await disconnectDB();
+    
+    return userModel;
   } catch (error) {
     return { error }
   }

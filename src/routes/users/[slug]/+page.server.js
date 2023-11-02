@@ -23,7 +23,7 @@ export const actions = {
       const { user } = jwt.verify(token, JWT_SECRET_KEY);
       const data = await request.formData();
 
-      await updateUserRepository(user._id, {
+      await updateUserRepository({ _id: user._id }, {
         name: data.get('name'),
         address: data.get('address')
       })
