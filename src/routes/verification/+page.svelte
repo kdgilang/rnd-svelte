@@ -82,17 +82,7 @@
     } catch(err) {
       const seconds = err?.split('(')?.[1]?.split(')')?.[0];
       resendInseconds = Number(seconds);
-
-      if (seconds) {
-        const interval = setInterval(() => {
-          resendInseconds--;
-
-          return () => {
-            clearInterval(interval);
-          };
-        }, 1000);
-      }
-
+      
       error = err;
     } finally {
       isBusy = false;
