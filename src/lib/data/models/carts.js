@@ -1,8 +1,14 @@
-import mongoose from 'mongoose';
-import { productsSchema } from './products';
+import { Schema, model, models } from 'mongoose';
 
-export const cartsSchema = mongoose.Schema({
-  product: productsSchema,
+export const cartsSchema = Schema({
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'Users'
+  },
+  product: {
+    type: Schema.Types.ObjectId,
+    ref: 'Products'
+  },
   name: {
     type: String,
   },
@@ -16,6 +22,14 @@ export const cartsSchema = mongoose.Schema({
     type: Boolean,
     default: true
   },
+  paymentStatus: {
+    type: String,
+    enum: ['Pending' , 'Paid']
+  },
+  deliveryStatus: {
+    type: String,
+    enum: ['Pending', 'On the way', 'Arrived']
+  },
   created_date: {
     type: Date,
     default: Date.now
@@ -26,4 +40,4 @@ export const cartsSchema = mongoose.Schema({
   }
 });
 
-export const CartsModel = mongoose.models.Carts ?? mongoose.model('Carts', cartsSchema);
+export const CartsModel = models.Carts ?? model('Carts', cartsSchema);

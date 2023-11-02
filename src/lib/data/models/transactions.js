@@ -15,7 +15,7 @@ const transactionsSchema = mongoose.Schema({
   },
   deliveryStatus: {
     type: String,
-    enum: ['Pending', 'Deliver', 'Arrived']
+    enum: ['Pending', 'On the way', 'Arrived']
   },
   created_date: {
     type: Date,

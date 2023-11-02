@@ -9,7 +9,7 @@ const headers = {
  * @param {String} [method]
  * @param {Object} [requestBody]
  */
-export const dbProvider = async (path, method, requestBody) => {
+export const localProvider = async (path, method, requestBody) => {
 
   return (await fetch(`${PUBLIC_BASE_URL}/api${path}`, {
     method,

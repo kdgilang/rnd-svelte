@@ -1,8 +1,11 @@
 <script>
 	import Image from '$lib/shared/components/elements/image/template.svelte'
+	import { createCartService } from '$lib/shared/services/cartServices';
 	import { cartStore } from '$lib/shared/stores/cart';
 	import { priceFormatted } from '$lib/shared/utils/priceFormatted';
+	import { getContext } from 'svelte';
   import './style.scss';
+	import Stretch from 'svelte-loading-spinners/Stretch.svelte';
 
 	/**
 	 * @typedef CardType
@@ -22,10 +25,15 @@
   let dialog;
   let note;
   let qty = 1;
+  let isBusy = false;
+
+  const user = getContext('user');
 
   $: if (dialog && showModal) dialog.showModal();
 
-  function handleFormSubmit() {
+  const handleFormSubmit = async () => {
+    if (isBusy) return;
+    isBusy = true;
     const cartItems = [
       ...$cartStore.items,
       {
@@ -35,7 +43,23 @@
         product
       }
     ];
+
     cartStore.updateItems(cartItems);
+    
+    if (user._id) {
+      try {
+        const cart = await createCartService({
+          user: user._id,
+          qty,
+          note,
+          product: product._id
+        });
+      } catch(err) {
+        console.log(err);
+      }
+    }
+
+    isBusy = false;
 
     dialog.close();
   }
@@ -107,14 +131,14 @@
         <input
           type="text"
           id="note"
-          placeholder="example: without jelly..."
+          placeholder="No sugar..."
           bind:value={note}
           class="bg-slate-200 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-yellow focus:border-yellow block w-full p-2.5 dark:border-slate-700 dark:placeholder-slate-400"
         />
       </div>
 
 			<!-- svelte-ignore a11y-autofocus -->
-			<div class="flex justify-between items-center">
+			<div class="flex justify-end items-center gap-4">
 				<button
 					class="rounded h-10 bg-black px-5 border-0 inline-flex items-center hover:bg-opacity-75 justify-center transition text-white"
 					on:click|preventDefault={() => dialog.close()}>Cancel</button
@@ -122,10 +146,16 @@
 
 				<button
 					autofocus
-					class="text-black rounded h-10 bg-yellow px-5 border-0 inline-flex items-center hover:bg-opacity-75 justify-center ml-4 transition"
+					class="text-black rounded h-10 bg-yellow px-5 border-0 inline-flex items-center hover:bg-opacity-75 justify-center transition"
 				>
 					Add
 				</button>
+
+        {#if isBusy}
+          <div class="flex justify-center">
+            <Stretch size="55" color="#FFA31A" unit="px" duration="1s" />
+          </div>
+        {/if}
 			</div>
 		</form>
 	</div>

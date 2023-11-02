@@ -3,9 +3,14 @@
 	import Stretch from "svelte-loading-spinners/Stretch.svelte";
   
   let isBusy = false;
+  let waNumber;
 
   let user = JSON.parse(getContext('user'));
   let form = getContext('profileForm');
+
+
+
+  $: waNumber = user?.waNumber?.slice(2, user?.waNumber?.length);
 
   const handleSubmit = async () => {
 
@@ -41,10 +46,10 @@
   <div>
     <label for="phone" class="block mb-2 text-sm font-medium text-slate-900 dark:text-slate-100">Whatsapp number</label>
     <div class="relative border border-slate-300 rounded-md dark:border-slate-600 overflow-hidden">
-      <div class="absolute bg-slate-100 dark:bg-slate-900 inset-y-0 left-0 flex items-center px-2.5 pointer-events-none">
-        <span class="text-slate-500 dark:text-slate-400 block">+62</span>
+      <div class="absolute bg-slate-500 inset-y-0 left-0 flex items-center px-2.5 pointer-events-none">
+        <span class="text-slate-900 dark:text-slate-400 block">+62</span>
       </div>
-      <input value="{user.waNumber}" type="phone" name="phone" id="phone" disabled class="disabled rounded-md pl-14 bg-slate-100 text-slate-900 sm:text-sm focus:ring-yellow-600 focus:border-yellow-600 block w-full p-2.5 dark:bg-slate-700 dark:placeholder-slate-400 dark:text-slate-100 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="ex: 08123456789" required>
+      <input value="{waNumber}" type="phone" name="phone" id="phone" disabled class="disabled rounded-md pl-14 bg-slate-100 text-slate-900 sm:text-sm focus:ring-yellow-600 focus:border-yellow-600 block w-full p-2.5 dark:bg-slate-700 dark:placeholder-slate-400 dark:text-slate-100 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="ex: 08123456789" required>
     </div>
   </div>
   <div>

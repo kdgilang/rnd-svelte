@@ -1,17 +1,17 @@
-import { dbProvider } from "$lib/shared/providers/dbProvider";
+import { localProvider } from "$lib/shared/providers/localProvider";
 
 export const createUserService = async (user) => {
-  return dbProvider('/users', 'POST', user)
+  return localProvider('/users', 'POST', user)
 }
 
 export const verificationService = async (data) => {
-  return dbProvider('/users/verify', 'POST', data)
+  return localProvider('/users/verify', 'POST', data)
 }
 
 export const sendVerificationService = async (waNumber) => {
-  return dbProvider('/users/send-verification', 'POST', waNumber)
+  return localProvider('/users/send-verification', 'POST', waNumber)
 }
 
 export const authService = async (data) => {
-  return dbProvider('/users/auth', 'POST', data)
+  return localProvider('/users/auth', 'POST', data)
 }

@@ -6,6 +6,7 @@
   
   export let form;
   export let data;
+  export let waNumber;
   
   let tabItems = ['Profile', 'Orders', 'Settings'];
   let activeTab = 'Profile';
