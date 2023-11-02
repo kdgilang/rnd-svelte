@@ -5,7 +5,8 @@ import { connectDB, disconnectDB } from '$lib/data';
 export const getCartsRepository = async (query) => {
   try {
     await connectDB();
-    const carts = await CartsModel.find(query).exec();
+    const carts = await CartsModel.find(query)
+      .populate('product').lean();
     await disconnectDB();
 
     if (!carts) {

@@ -1,21 +1,29 @@
+import jwt from 'jsonwebtoken';
 import { JWT_SECRET_KEY } from '$env/static/private';
 import { redirect } from '@sveltejs/kit';
 import { UsersModel } from '$lib/data/models/users';
 import { ProductsModel } from '$lib/data/models/products';
-import jwt from 'jsonwebtoken';
+import { CartsModel } from '$lib/data/models/carts';
+import { getCartsRepository } from '$lib/data/repositories/cartRepositories';
 
 /** @type {import('./$types').LayoutServerLoad} */
 export async function load({ route, cookies }) {
   let userData;
-
+  let carts;
   try {
     // Init schema collections
     UsersModel();
     ProductsModel();
+    CartsModel();
 
     const token = cookies.get('userToken');
 
     userData = token ? jwt.verify(token, JWT_SECRET_KEY) : '';
+
+    if (userData?.user) {
+      carts = await getCartsRepository({ user: userData.user._id });
+    }
+
   } catch(err) {
     let errorMessage = err.message;
 
@@ -41,6 +49,7 @@ export async function load({ route, cookies }) {
   }
   
   return {
-    user: userData?.user
+    user: userData?.user,
+    carts
   };
 }

@@ -5,15 +5,20 @@
 	import Header from '$lib/shared/components/layouts/header/template.svelte';
 	import Jellyfish from 'svelte-loading-spinners/Jellyfish.svelte';
 	import { navigating } from '$app/stores';
+	import { cartStore } from '$lib/shared/stores/cart';
 
 	/** @type {import('./$types').LayoutData} */
 	export let data;
 
-  let { errorMessage } = data
+  let { errorMessage, user, carts } = data
 
-	setContext('user', data?.user);
+	setContext('user', user);
 
 	onMount(() => {
+    // init carts
+    if (carts?.length) {
+      cartStore.updateItems(data?.carts);
+    }
 		// Init Dark Mode
 		if (localStorage.getItem('siteSettings')) {
 			const localSettings = JSON.parse(localStorage.getItem('siteSettings'));
