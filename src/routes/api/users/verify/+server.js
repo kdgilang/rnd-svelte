@@ -14,19 +14,18 @@ export const POST = async ({request}) => {
   
     await disconnectDB();
   
-    if (user) {
-      user.verification.code = '';
-      user.verification.status = true;
-      user.updated_date = Date.now();
-      user.verification.date = Date.now();
-      await user.save();
-
-      const token = jwt.sign({ user }, JWT_SECRET_KEY, { expiresIn: '3h' });
-  
-      return json({ status: true, message: 'success', token, userId: user._id });
-    } else {
+    if (!user) {
       throw 'Not Found';
     }
+    user.verification.code = '';
+    user.verification.status = true;
+    user.updated_date = Date.now();
+    user.verification.date = Date.now();
+    await user.save();
+
+    const token = jwt.sign({ user }, JWT_SECRET_KEY, { expiresIn: '3h' });
+
+    return json({ status: true, message: 'success', token, userId: user._id });
   } catch(error) {
     return json({ error });
   }
