@@ -14,6 +14,7 @@ export const cartsSchema = Schema({
   },
   quantity: {
     type: Number,
+    default: 1
   },
   note: {
     type: String,

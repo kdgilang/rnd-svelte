@@ -24,7 +24,7 @@
   let showModal;
   let dialog;
   let note;
-  let qty = 1;
+  let quantity = 1;
   let isBusy = false;
 
   const user = getContext('user');
@@ -38,7 +38,7 @@
       ...$cartStore.items,
       {
         id: new Date().getTime(),
-        qty,
+        quantity,
         note,
         product
       }
@@ -50,7 +50,7 @@
       try {
         const cart = await createCartService({
           user: user._id,
-          qty,
+          quantity,
           note,
           product: product._id
         });
@@ -117,12 +117,12 @@
 	<div on:click|stopPropagation>
 		<form action="" on:submit|preventDefault={handleFormSubmit}>
       <div class="w-full mb-4">
-        <label for="qty" class="block mb-2 text-sm font-medium">Quantity</label>
+        <label for="quantity" class="block mb-2 text-sm font-medium">Quantity</label>
         <input
           type="number"
-          id="qty"
+          id="quantity"
           min="1"
-          bind:value={qty}
+          bind:value={quantity}
           class="bg-slate-200 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-yellow focus:border-yellow block w-full p-2.5 dark:border-slate-700 dark:placeholder-slate-400"
         />
       </div>

@@ -13,7 +13,7 @@
 
 	let cream;
 
-	let qty = 1;
+	let quantity = 1;
 
 	$: if (dialog && showModal) dialog.showModal();
 	const { product } = data;
@@ -23,7 +23,7 @@
 			...$cartStore.items,
 			{
 				id: new Date().getTime(),
-				qty,
+				quantity,
 				cream: data?.creams.find((item) => item.title === cream),
 				topping: data?.toppings.find((item) => item.title === topping),
 				product
@@ -199,17 +199,17 @@
 		<form action="" on:submit|preventDefault={handleFormSubmit}>
 			<div class="grid gap-6 mb-6 md:grid-cols-2">
 				<div>
-					<label for="qty" class="block mb-2 text-sm font-medium">Quantity</label>
+					<label for="quantity" class="block mb-2 text-sm font-medium">Quantity</label>
 					<input
 						type="number"
-						id="qty"
+						id="quantity"
 						min="1"
-						bind:value={qty}
+						bind:value={quantity}
 						class="bg-slate-200 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-yellow focus:border-yellow block w-full p-2.5 dark:border-slate-700 dark:placeholder-slate-400"
 					/>
 				</div>
 				<div>
-					<label for="qty" class="block mb-2 text-sm font-medium">Creams</label>
+					<label for="quantity" class="block mb-2 text-sm font-medium">Creams</label>
 					<select
 						bind:value={cream}
 						required
@@ -224,7 +224,7 @@
 					</select>
 				</div>
 				<div>
-					<label for="qty" class="block mb-2 text-sm font-medium">Toppings</label>
+					<label for="quantity" class="block mb-2 text-sm font-medium">Toppings</label>
 					<select
 						bind:value={topping}
 						required

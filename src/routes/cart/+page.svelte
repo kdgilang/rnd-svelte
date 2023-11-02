@@ -23,7 +23,7 @@
 		$cartStore?.items?.map((item) => {
 			subtotalAmount +=
 				(item?.product?.price) *
-				item.qty;
+				item.quantity;
 		});
 
 		totalAmount = subtotalAmount ? (subtotalAmount + shipping) : 0;
@@ -114,9 +114,9 @@
               <div class="flex items-center gap-4">
                 <input
                   type="number"
-                  id="qty"
+                  id="quantity"
                   min="1"
-                  bind:value={item.qty}
+                  bind:value={item.quantity}
                   class="text-center bg-slate-200 dark:bg-slate-600 border border-slate-300 text-slate-900 dark:text-slate-200 text-sm rounded-lg focus:ring-yellow focus:border-yellow block w-full p-2.5 dark:border-slate-700 dark:placeholder-slate-400"
                 />
                 <button
@@ -158,13 +158,13 @@
       {#each $cartStore.items as item}
         <div class="mb-2 flex justify-between">
           <p>
-            {item?.product?.name} x {item.qty}<br />
+            {item?.product?.name} x {item.quantity}<br />
             <small>note: {item?.note}</small>
           </p>
           <p>
             {priceFormatted(
               (item?.product?.price) *
-                item.qty
+                item.quantity
             )}
           </p>
         </div>
