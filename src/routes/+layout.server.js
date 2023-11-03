@@ -25,10 +25,10 @@ export async function load({ route, cookies }) {
     }
 
   } catch(err) {
-    let errorMessage = err.message;
+    let errorMessage = err?.message;
 
     // expired token
-    if (err.message?.contains('expired')) {
+    if (errorMessage?.includes('expired')) {
       errorMessage = 'User session expired. Please <a href="/signin" class="text-yellow underline hover:opacity-25">singin</a> again.';
       cookies.delete('userToken');
     }
