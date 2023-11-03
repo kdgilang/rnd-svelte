@@ -21,7 +21,7 @@ export async function load({ route, cookies }) {
     userData = token ? jwt.verify(token, JWT_SECRET_KEY) : '';
 
     if (userData?.user) {
-      carts = await getCartsRepository({ user: userData.user._id });
+      carts = JSON.parse(JSON.stringify(await getCartsRepository({ user: userData.user._id })));
     }
 
   } catch(err) {
