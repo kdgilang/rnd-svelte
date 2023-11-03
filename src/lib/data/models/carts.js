@@ -1,12 +1,12 @@
-import { Schema, model, models } from 'mongoose';
+import mongoose from 'mongoose';
 
-export const cartsSchema = Schema({
+export const cartsSchema = mongoose.Schema({
   user: {
-    type: Schema.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'Users'
   },
   product: {
-    type: Schema.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'Products'
   },
   name: {
@@ -41,4 +41,4 @@ export const cartsSchema = Schema({
   }
 });
 
-export const CartsModel = models.Carts ?? model('Carts', cartsSchema);
+export const CartsModel = mongoose.models.Carts ?? mongoose.model('Carts', cartsSchema);
