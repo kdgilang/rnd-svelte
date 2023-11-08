@@ -20,10 +20,6 @@ export async function load({ route, cookies }) {
 
     userData = token ? jwt.verify(token, JWT_SECRET_KEY) : '';
 
-    if (userData?.user) {
-      carts = JSON.parse(JSON.stringify(await getCartsRepository({ user: userData.user._id })));
-    }
-
   } catch(err) {
     let errorMessage = err?.message;
 
@@ -38,13 +34,17 @@ export async function load({ route, cookies }) {
     };
   }
 
+  if (userData?.user) {
+    carts = JSON.parse(JSON.stringify(await getCartsRepository({ user: userData.user._id })));
+  }
+
   // check if user session exists on some pages
   if (['/signin', '/verification'].indexOf(route.id) >= 0 && userData?.user) {
     throw redirect('302', '/');
   }
 
   // check if user session not exists on some pages
-  if (['/users/'].indexOf(route.id) >= 0 && !userData?.user) {
+  if (route.id?.includes('users') && !userData?.user) {
     throw redirect('302', '/signin');
   }
   

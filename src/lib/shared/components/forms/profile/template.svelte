@@ -8,8 +8,6 @@
   let user = JSON.parse(getContext('user'));
   let form = getContext('profileForm');
 
-
-
   $: waNumber = user?.waNumber?.slice(2, user?.waNumber?.length);
 
   const handleSubmit = async () => {
