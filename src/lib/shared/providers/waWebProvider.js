@@ -1,6 +1,6 @@
-import Whatsapp from 'whatsapp-web.js';
+import { Client, LocalAuth } from 'whatsapp-web.js';
 
-const { Client, LocalAuth } = Whatsapp;
+// const { Client, LocalAuth } = Whatsapp;
 
 export const waWebProvider = new Client({
   authStrategy: new LocalAuth(),
