@@ -39,6 +39,7 @@
 		"jsonwebtoken": "^9.0.2",
 		"mongoose": "^7.6.3",
 		"skeleton-elements": "^4.0.1",
-		"svelte-loading-spinners": "^0.3.4"
+		"svelte-loading-spinners": "^0.3.4",
+		"whatsapp-web.js": "^1.23.0"
 	}
 }

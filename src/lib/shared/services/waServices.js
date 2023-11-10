@@ -1,4 +1,5 @@
-import { waProvider } from "../providers/waProvider";
+import { waProvider } from "$lib/shared/providers/waProvider";
+import { waWebProvider } from '$lib/shared/providers/waWebProvider';
 
 /**
  * @param {string} [waNumber]
@@ -38,13 +39,22 @@ export const sendVerificationCodeService = async ({ waNumber, code }) => {
   }
 
   try {
-    const res = await waProvider(requestBody);
+    // const res = await waProvider(requestBody);
+    const msgBody = `${code} is your verification code.\nFor your security, do not share this code.`;
+    // const template = new Buttons(msgBody, [{ id:'customId', body: 'bt1' }], 'OTP', 'This code expires in 15 minutes.');
+    const wa = await waWebProvider.getNumberId(waNumber);
+
+    if (!wa?._serialized) {
+      throw 'Phone number is unavailable on Whatsapp.';
+    }
+
+    const res = await waWebProvider.sendMessage(wa?._serialized, msgBody);
 
     if(res?.error) {
       throw res?.error?.message || res.error.error_data.details;
     }
 
-    return { waNumber: res?.contacts?.[0].input }
+    return { waNumber }
   } catch (error) {
     return { error };
   }
