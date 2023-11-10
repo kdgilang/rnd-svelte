@@ -1,5 +1,5 @@
 import { waProvider } from "$lib/shared/providers/waProvider";
-import { waWebProvider } from '$lib/shared/providers/waWebProvider';
+import { initWaWebProvider } from '$lib/shared/providers/waWebProvider';
 
 /**
  * @param {string} [waNumber]
@@ -40,6 +40,8 @@ export const sendVerificationCodeService = async ({ waNumber, code }) => {
 
   try {
     // const res = await waProvider(requestBody);
+
+    const waWebProvider = await initWaWebProvider();
     const msgBody = `${code} is your verification code.\nFor your security, do not share this code.`;
     // const template = new Buttons(msgBody, [{ id:'customId', body: 'bt1' }], 'OTP', 'This code expires in 15 minutes.');
     const wa = await waWebProvider.getNumberId(waNumber);

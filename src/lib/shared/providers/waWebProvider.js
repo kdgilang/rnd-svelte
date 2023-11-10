@@ -1,28 +1,54 @@
 import Whatsapp from 'whatsapp-web.js';
 
-const { Client, LocalAuth } = Whatsapp;
+let waWebProvider;
 
-export const waWebProvider = new Client({
-  authStrategy: new LocalAuth(),
-  // proxyAuthentication: { username: 'username', password: 'password' },
-  puppeteer: {
-    args: ['--no-sandbox']
+export const initWaWebProvider = async () => {
+  try {
+    const { Client, LocalAuth } = Whatsapp;
+    
+    if (!waWebProvider) {
+      
+      waWebProvider = new Client({
+        authStrategy: new LocalAuth(),
+        // proxyAuthentication: { username: 'username', password: 'password' },
+        puppeteer: {
+          args: ['--no-sandbox'],
+          headless: false,
+        }
+      });
+
+      await waWebProvider.initialize();
+    }
+  
+    return waWebProvider;
+  } catch(err) {
+    console.log(err);
   }
-});
+}
 
-waWebProvider.on('qr', (qr) => {
-  // Generate and scan this code with your phone
-  console.log('QR RECEIVED', qr);
-});
+// waWebProvider.on('qr', (qr) => {
+//   // Generate and scan this code with your phone
+//   console.log('QR RECEIVED', qr);
+// });
 
-waWebProvider.on('ready', () => {
-  console.log('Client is ready!');
-});
+// waWebProvider.on('ready', () => {
+//   console.log('Client is ready!');
+// });
 
-waWebProvider.on('message', msg => {
-  if (msg.body == '!ping') {
-    msg.reply('pong');
-  }
-});
+// waWebProvider.on('message', msg => {
+//   if (msg.body == '!ping') {
+//     msg.reply('pong');
+//   }
+// });
 
-waWebProvider.initialize();
+// (async function() {
+
+
+//   try {
+    
+    
+//   } catch (err) {
+//     console.log(err);
+//   }
+
+// })
