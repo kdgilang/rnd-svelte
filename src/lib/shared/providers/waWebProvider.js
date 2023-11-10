@@ -5,11 +5,13 @@ let waWebProvider;
 export const initWaWebProvider = async () => {
   try {
     const { Client, LocalAuth } = Whatsapp;
-    
+
     if (!waWebProvider) {
       
       waWebProvider = new Client({
-        authStrategy: new LocalAuth(),
+        authStrategy: new LocalAuth({
+          dataPath: './'
+        }),
         // proxyAuthentication: { username: 'username', password: 'password' },
         puppeteer: {
           args: ['--no-sandbox'],
