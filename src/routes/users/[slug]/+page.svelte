@@ -2,11 +2,9 @@
   import ProfileForm from '$lib/shared/components/forms/profile/template.svelte';
   import Cookies from 'js-cookie';
 	import { setContext } from 'svelte';
-
   
   export let form;
   export let data;
-  export let waNumber;
   
   let tabItems = ['Profile', 'Orders', 'Settings'];
   let activeTab = 'Profile';
@@ -52,7 +50,9 @@
       {#if activeTab === tabItems[0]}
         <ProfileForm />
       {:else if activeTab === tabItems[1]}
+        <p class="center">Comming soon.</p>
       {:else if activeTab === tabItems[2]}
+        <p class="center">Comming soon.</p>
       {/if}
     </div>
   </div>
