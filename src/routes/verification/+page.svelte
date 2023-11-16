@@ -3,6 +3,9 @@
 	import Stretch from 'svelte-loading-spinners/Stretch.svelte';
   import Cookies from 'js-cookie';
 	import { onMount } from 'svelte';
+	import { createCartService } from '$lib/shared/services/cartServices.js';
+	import { cartStore } from '$lib/shared/stores/cart';
+	import { page } from '$app/stores';
 
   export let data;
   let codes = []
@@ -24,6 +27,8 @@
     }, 1000);
   });
 
+  const redirectPath = $page.url.searchParams.get('r')
+
   async function verify() {
     if (isBusy) return
 
@@ -41,9 +46,27 @@
         throw Error(resVerify?.message);
       }
 
+      if ($cartStore?.items?.length) {
+        $cartStore.items.map(async (item) => {
+          const { quantity, note, product } = item;
+
+          await createCartService({
+            user: resVerify.userId,
+            quantity,
+            note,
+            product: product._id
+          });
+        })
+      }
+
       Cookies.remove('waNumber');
 
       Cookies.set('userToken', resVerify.token, { expires: 1, secure: true });
+
+      if (redirectPath) {
+        window.location.href = `${redirectPath}`;
+        return;
+      }
 
       window.location.href = `/users/${resVerify.userId}`;
     } catch(err) {

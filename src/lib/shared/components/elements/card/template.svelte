@@ -46,7 +46,8 @@
 
     cartStore.updateItems(cartItems);
     
-    if (user._id) {
+    if (user?._id) {
+      
       try {
         const cart = await createCartService({
           user: user._id,

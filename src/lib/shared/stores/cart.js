@@ -11,13 +11,13 @@ function createCart() {
 		set,
 		update,
 		subscribe,
-		updateItems: (items) =>
+		updateItems: items =>
 			update((n) => ({
 				...n,
 				items
 			})),
 		reset: () =>
-			set((n) => ({
+			set(n => ({
 				...n,
 				items: []
 			}))

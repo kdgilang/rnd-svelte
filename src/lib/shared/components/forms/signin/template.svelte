@@ -5,6 +5,7 @@
 	import {
     authService
   } from "$lib/shared/services/userServices";
+  import { page } from '$app/stores'
   
   let waNumber = '';
   let waNumberFormatted = '';
@@ -17,6 +18,8 @@
       waNumberFormatted = `62${waNumber.slice(1, waNumber?.length)}`;
     }
   }
+
+  const redirectPath = $page.url.searchParams.get('r')
 
   const handleSubmit = async () => {
     try {
@@ -33,7 +36,7 @@
       }
 
       Cookies.set('waNumber', res.waNumber, { expires: 1 });
-      goto('/verification');
+      goto(`/verification?r=${redirectPath}`);
     } catch (err) {
       error = err?.message;
     } finally {

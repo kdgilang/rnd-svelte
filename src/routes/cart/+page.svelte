@@ -8,11 +8,15 @@
 		PUBLIC_FLIP_API_KEY
 	} from '$env/static/public';
 	import { dateFormatted } from '$lib/shared/utils/dateFormatted';
+	import { goto } from '$app/navigation';
+	import { getContext } from 'svelte';
 
 	let isBusy = false;
 	let subtotalAmount = 0;
 	let totalAmount = 0;
 	const shipping = 10000;
+
+  const user = getContext('user');
 
 	function handleRemoveCartItem(cartItem) {
 		const newCart = $cartStore.items?.filter((item) => item?.id !== cartItem?.id);
@@ -20,17 +24,19 @@
 	}
 
 	$: {
-		$cartStore?.items?.map((item) => {
-			subtotalAmount +=
-				(item?.product?.price) *
-				item.quantity;
-		});
+		subtotalAmount = $cartStore?.items?.reduce((prev, item) => 
+      prev + (item?.product?.price * item.quantity), 0
+		);
 
 		totalAmount = subtotalAmount ? (subtotalAmount + shipping) : 0;
 	}
 
 	async function handleOnClickCheckout() {
 		if (isBusy) return;
+
+    if (!user?._id) {
+      goto('/signin?r=/cart');
+    }
 
 		isBusy = true;
 
