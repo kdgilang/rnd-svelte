@@ -9,7 +9,7 @@ export const POST = async ({request, cookies}) => {
     const { user } = token ? jwt.verify(token, JWT_SECRET_KEY) : '';
 
     if (!user) {
-      throw 'Access denied.';
+      throw Error('Access denied.');
     }
 
     const cart = await request.json();
@@ -17,11 +17,11 @@ export const POST = async ({request, cookies}) => {
     const cartModel = await createCartRepository(cart);
 
     if(cartModel?.error) {
-      throw 'Unable to create a new cart.';
+      throw Error('Unable to create a new cart.');
     }
 
-    return json(cartModel);
+    return json({ status: true, message: 'success!', cartModel });
   } catch (err) {
-    return json(err);
+    return json({ status: false, message: err.message });
   }
 }

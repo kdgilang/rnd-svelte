@@ -27,8 +27,6 @@
     }, 1000);
   });
 
-  const redirectPath = $page.url.searchParams.get('r')
-
   async function verify() {
     if (isBusy) return
 
@@ -63,8 +61,8 @@
 
       Cookies.set('userToken', resVerify.token, { expires: 1, secure: true });
 
-      if (redirectPath) {
-        window.location.href = `${redirectPath}`;
+      if ($page.url.searchParams.has('r')) {
+        window.location.href = `${$page.url.searchParams.get('r')}`;
         return;
       }
 

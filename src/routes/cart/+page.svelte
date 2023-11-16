@@ -2,18 +2,14 @@
 	import { cartStore } from '$lib/shared/stores/cart';
 	import { priceFormatted } from '$lib/shared/utils/priceFormatted';
 	import Stretch from 'svelte-loading-spinners/Stretch.svelte';
-	import {
-    PUBLIC_BASE_URL,
-		PUBLIC_FLIP_API_HOST,
-		PUBLIC_FLIP_API_KEY
-	} from '$env/static/public';
-	import { dateFormatted } from '$lib/shared/utils/dateFormatted';
 	import { goto } from '$app/navigation';
 	import { getContext } from 'svelte';
+	import { payService } from '$lib/shared/services/paymentServices';
 
 	let isBusy = false;
 	let subtotalAmount = 0;
 	let totalAmount = 0;
+  let error = '';
 	const shipping = 10000;
 
   const user = getContext('user');
@@ -42,36 +38,15 @@
 		isBusy = true;
 
 		try {
-			const payload = {
-				title: 'Berbuah bill',
-				amount: totalAmount,
-				type: 'SINGLE',
-				expired_date: dateFormatted(new Date(Date.now() + 8 * (60 * 60 * 1000))),
-				redirect_url: `${PUBLIC_BASE_URL}/payment-status`,
-				is_address_required: 0,
-				is_phone_number_required: 1
-			};
+			const res = await payService();
 
-			const myHeaders = new Headers();
-			myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
-			myHeaders.append('Authorization', `Basic ${btoa(PUBLIC_FLIP_API_KEY)}:`);
-
-			const requestOptions = {
-				method: 'POST',
-				headers: myHeaders,
-				body: new URLSearchParams(payload).toString(),
-				redirect: 'follow'
-			};
-
-			const res = await (await fetch(`${PUBLIC_FLIP_API_HOST}/bill`, requestOptions)).json();
-
-      if (res?.errors?.length) {
-        return
+      if (!res?.status) {
+        throw Error(res?.message);
       }
 
-			window.location.href = `https://${res.link_url}`;
+			// window.location.href = `https://${res.link_url}`;
 		} catch (err) {
-			console.log(err);
+      error = err;
 		} finally {
 			isBusy = false;
 		}
@@ -97,6 +72,24 @@
       Continue shoping
     </a>
   </div>
+
+  {#if error}
+  <div id="alert-2" class="flex items-center p-4 mb-4 text-slate-100 rounded-md bg-red/60" role="alert">
+    <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+      <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+    </svg>
+    <span class="sr-only">Info</span>
+    <div class="ml-3 text-sm font-medium">
+      {error}
+    </div>
+    <button on:click={() => error = ''} type="button" class="ml-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-md focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex items-center justify-center h-8 w-8 dark:bg-gray-800 dark:text-red-400 dark:hover:bg-gray-700" data-dismiss-target="#alert-2" aria-label="Close">
+      <span class="sr-only">Close</span>
+      <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+      </svg>
+    </button>
+  </div>
+  {/if}
   <div class="flex justify-center gap-4">
     <div class="rounded-lg md:w-2/3">
       {#each $cartStore.items as item}
