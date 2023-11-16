@@ -36,6 +36,7 @@
 
     if (!user?._id) {
       goto('/signin?r=/cart');
+      return;
     }
 
 		isBusy = true;
