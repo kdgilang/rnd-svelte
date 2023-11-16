@@ -1,0 +1,58 @@
+2023/11/16-10:49:29.739 12003 Reusing MANIFEST /Users/gilang.putra/Documents/Nodejs/rnd-svelte/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2023/11/16-10:49:29.745 12003 Recovering log #378
+2023/11/16-10:49:29.775 12003 Reusing old log /Users/gilang.putra/Documents/Nodejs/rnd-svelte/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000378.log 
+2023/11/16-10:49:41.119 19607 Level-0 table #388: started
+2023/11/16-10:49:41.195 19607 Level-0 table #388: 1547160 bytes OK
+2023/11/16-10:49:41.209 19607 Delete type=0 #378
+2023/11/16-10:49:41.222 19607 Compacting 1@1 + 7@2 files
+2023/11/16-10:49:41.284 19607 Generated table #389@1: 69886 keys, 2213714 bytes
+2023/11/16-10:49:41.356 19607 Generated table #390@1: 97384 keys, 2272205 bytes
+2023/11/16-10:49:41.389 19607 Generated table #391@1: 18374 keys, 2177653 bytes
+2023/11/16-10:49:41.424 19607 Generated table #392@1: 1092 keys, 2135005 bytes
+2023/11/16-10:49:41.467 19607 Generated table #393@1: 22344 keys, 2209254 bytes
+2023/11/16-10:49:41.518 19607 Generated table #394@1: 53182 keys, 1342888 bytes
+2023/11/16-10:49:41.518 19607 Compacted 1@1 + 7@2 files => 12350719 bytes
+2023/11/16-10:49:41.527 19607 compacted to: files[ 0 0 6 0 0 0 0 ]
+2023/11/16-10:49:42.594 19517 Level-0 table #396: started
+2023/11/16-10:49:42.631 19517 Level-0 table #396: 1680046 bytes OK
+2023/11/16-10:49:42.644 19517 Delete type=2 #388
+2023/11/16-10:49:42.644 19517 Delete type=2 #377
+2023/11/16-10:49:42.644 19517 Delete type=2 #381
+2023/11/16-10:49:42.644 19517 Delete type=2 #380
+2023/11/16-10:49:42.644 19517 Delete type=2 #382
+2023/11/16-10:49:42.645 19517 Delete type=2 #383
+2023/11/16-10:49:42.645 19517 Delete type=2 #384
+2023/11/16-10:49:42.645 19517 Delete type=2 #385
+2023/11/16-10:49:42.645 19517 Delete type=0 #387
+2023/11/16-10:49:43.028 1a907 Compacting 1@1 + 6@2 files
+2023/11/16-10:49:43.105 1a907 Generated table #397@1: 84216 keys, 2233443 bytes
+2023/11/16-10:49:43.162 1a907 Generated table #398@1: 89000 keys, 2269932 bytes
+2023/11/16-10:49:43.191 1a907 Generated table #399@1: 13378 keys, 2162506 bytes
+2023/11/16-10:49:43.225 1a907 Generated table #400@1: 15070 keys, 2193736 bytes
+2023/11/16-10:49:43.274 1a907 Generated table #401@1: 60469 keys, 1920435 bytes
+2023/11/16-10:49:43.274 1a907 Compacted 1@1 + 6@2 files => 10780052 bytes
+2023/11/16-10:49:43.283 1a907 compacted to: files[ 0 0 5 0 0 0 0 ]
+2023/11/16-10:51:03.163 13203 Level-0 table #403: started
+2023/11/16-10:51:03.192 13203 Level-0 table #403: 1085059 bytes OK
+2023/11/16-10:51:03.204 13203 Delete type=2 #389
+2023/11/16-10:51:03.204 13203 Delete type=2 #394
+2023/11/16-10:51:03.204 13203 Delete type=2 #396
+2023/11/16-10:51:03.204 13203 Delete type=2 #393
+2023/11/16-10:51:03.204 13203 Delete type=2 #392
+2023/11/16-10:51:03.204 13203 Delete type=2 #390
+2023/11/16-10:51:03.204 13203 Delete type=2 #391
+2023/11/16-10:51:03.204 13203 Delete type=0 #395
+2023/11/16-10:51:04.101 13203 Compacting 1@1 + 5@2 files
+2023/11/16-10:51:04.168 13203 Generated table #404@1: 84649 keys, 2233628 bytes
+2023/11/16-10:51:04.224 13203 Generated table #405@1: 88646 keys, 2267950 bytes
+2023/11/16-10:51:04.257 13203 Generated table #406@1: 13226 keys, 2167708 bytes
+2023/11/16-10:51:04.289 13203 Generated table #407@1: 15456 keys, 2195247 bytes
+2023/11/16-10:51:04.335 13203 Generated table #408@1: 60043 keys, 1908981 bytes
+2023/11/16-10:51:04.335 13203 Compacted 1@1 + 5@2 files => 10773514 bytes
+2023/11/16-10:51:04.345 13203 compacted to: files[ 0 0 5 0 0 0 0 ]
+2023/11/16-10:51:04.347 13203 Delete type=2 #403
+2023/11/16-10:51:04.347 13203 Delete type=2 #399
+2023/11/16-10:51:04.347 13203 Delete type=2 #400
+2023/11/16-10:51:04.347 13203 Delete type=2 #401
+2023/11/16-10:51:04.347 13203 Delete type=2 #398
+2023/11/16-10:51:04.347 13203 Delete type=2 #397

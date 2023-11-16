@@ -3,12 +3,11 @@ import  mongoose from 'mongoose';
 const usersSchema = mongoose.Schema({
 	name: {
 		type: String,
-		required: [true, 'Name is required.'],
 		validate: {
 			validator: (v) => {
 				return /\S+/.test(v);
 			},
-			message: '{VALUE} is not a valid name, Name should be string.'
+			message: '{VALUE} is not a valid name. Name should be string.'
 		}
 	},
   address: {

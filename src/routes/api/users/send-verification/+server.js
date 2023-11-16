@@ -34,6 +34,10 @@ export const POST = async ({request}) => {
       code
     });
 
+    if (res?.error) {
+      throw Error(res.error?.message);
+    }
+
     if (user) {
       user.verification.code = code;
       user.verification.date = Date.now();
@@ -44,6 +48,6 @@ export const POST = async ({request}) => {
 
     return json(res)
   } catch (error) {
-    return json({ error })
+    return json({ errorMessage: error.message })
   }
 }

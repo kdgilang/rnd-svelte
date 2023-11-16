@@ -12,7 +12,7 @@ export async function load({ cookies }) {
 
   // check if user session exists on signin page
 	if (!user) {
-    throw redirect('302', '/');
+    throw redirect('302', '/signin');
 	}
 
 	return {

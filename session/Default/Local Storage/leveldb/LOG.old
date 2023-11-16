@@ -1,0 +1,6 @@
+2023/11/10-14:55:30.406 2103 Reusing MANIFEST /Users/gilang.putra/Documents/Nodejs/rnd-svelte/session/Default/Local Storage/leveldb/MANIFEST-000001
+2023/11/10-14:55:30.418 2103 Recovering log #3
+2023/11/10-14:55:30.424 2103 Reusing old log /Users/gilang.putra/Documents/Nodejs/rnd-svelte/session/Default/Local Storage/leveldb/000003.log 
+2023/11/16-06:33:18.928 4f23 Level-0 table #5: started
+2023/11/16-06:33:18.945 4f23 Level-0 table #5: 13550 bytes OK
+2023/11/16-06:33:18.961 4f23 Delete type=0 #3

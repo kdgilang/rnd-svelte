@@ -17,8 +17,17 @@ export const POST = async ({request}) => {
 
     const token = jwt.sign({ user }, JWT_SECRET_KEY, { expiresIn: '3h' });
 
-    return json({ status: true, message: 'success', token, userId: user._id });
+    return json({
+      status: true,
+      message: 'success',
+      token,
+      userId: user._id
+    });
   } catch(error) {
-    return json({ error });
+    
+    return json({
+      status: false,
+      message: 'The code you entered does not match the code we sent you.'
+    });
   }
 }

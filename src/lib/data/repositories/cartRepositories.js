@@ -15,7 +15,8 @@ export const getCartsRepository = async (query) => {
 
     return carts;
   } catch (error) {
-    return { error }
+    console.error('getCartsRepository:', error);
+    throw error;
   }
 }
 
@@ -33,7 +34,8 @@ export const updateCartRepository = async (query, newData) => {
 
     return carts;
   } catch (error) {
-    return { error }
+    console.error('updateCartRepository:', error);
+    throw error;
   }
 }
 
@@ -45,6 +47,7 @@ export const createCartRepository = async (data) => {
 
     return carts;
   } catch (error) {
-    return { error }
+    console.error('createCartRepository:', error);
+    throw error;
   }
 }

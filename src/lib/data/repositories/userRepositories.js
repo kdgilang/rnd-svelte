@@ -10,27 +10,29 @@ export const updateUserRepository = async (query, newData) => {
     const userModel = await UsersModel.findOneAndUpdate(query, {
       ...newData
     }).exec();
-  
+
+    await disconnectDB();
+
     if (!userModel) {
       throw Error('Not found.');
     }
-
-    await disconnectDB();
     
     return userModel;
   } catch (error) {
-    return { error }
+    console.error('updateUserRepository:', error);
+    throw error;
   }
 }
 
-export const getUserByIdRepository = async (userId) => {
+export const getUserByQueryRepository = async (query) => {
   try {
     await connectDB();
-    const user = await UsersModel.findOne({ _id: userId }).exec();
+    const user = await UsersModel.findOne(query).exec();
     await disconnectDB();
   
     return user;
   } catch(error) {
-    return { error }
+    console.error('getUserByQueryRepository:', error);
+    throw error;
   }
 }

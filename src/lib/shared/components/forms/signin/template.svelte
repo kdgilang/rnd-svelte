@@ -28,14 +28,14 @@
         waNumber: waNumberFormatted
       });
 
-      if(res?.error) {
-        throw res?.error;
+      if(res?.errorMessage) {
+        throw Error(res.errorMessage);
       }
 
       Cookies.set('waNumber', res.waNumber, { expires: 1 });
       goto('/verification');
     } catch (err) {
-      error = err;
+      error = err?.message;
     } finally {
       isBusy = false;
     }

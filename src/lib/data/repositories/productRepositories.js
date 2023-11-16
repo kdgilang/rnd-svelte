@@ -14,6 +14,7 @@ export const getAllProductsRepository = async () => {
 
     return productsModel;
   } catch (error) {
-    return { error }
+    console.error('getAllProductsRepository:', error);
+    throw error;
   }
 }

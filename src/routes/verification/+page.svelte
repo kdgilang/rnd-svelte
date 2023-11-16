@@ -11,7 +11,7 @@
   let resendInseconds = 0;
 
   const { waNumber } = data;
-
+  
   onMount(() => {
     const interval = setInterval(() => {
       if (resendInseconds > 0) {
@@ -24,7 +24,7 @@
     }, 1000);
   });
 
-  async function sendCodeVerification() {
+  async function verify() {
     if (isBusy) return
 
     try {
@@ -37,8 +37,8 @@
         waNumber
       });
 
-      if (resVerify?.error) {
-        throw resVerify?.error;
+      if (!resVerify.status) {
+        throw Error(resVerify?.message);
       }
 
       Cookies.remove('waNumber');
@@ -47,7 +47,7 @@
 
       window.location.href = `/users/${resVerify.userId}`;
     } catch(err) {
-      error = err;
+      error = err.message;
     } finally {
       isBusy = false;
     }
@@ -61,7 +61,7 @@
     }
 
     if (codes.length === 6 && (!codes.includes(undefined) && !codes.includes(''))) {
-      await sendCodeVerification();
+      await verify();
     }
   }
 
@@ -93,7 +93,7 @@
     try {
       const clipCode = await navigator.clipboard.readText();
       codes = clipCode.split('')
-      await sendCodeVerification();
+      await verify();
     } catch (err) {
       console.log(err);
     }
@@ -122,14 +122,15 @@
       </div>
       {/if}
 
-      <div class="bg-white rounded-md shadow dark:border dark:bg-slate-900 dark:border-slate-900 py-4 text-center text-slate-900 dark:text-slate-200">
-        <h1 class="text-2xl font-bold">Verification code</h1>
+      <div class="bg-white px-4 rounded-md shadow dark:border dark:bg-slate-900 dark:border-slate-900 py-4 text-center text-slate-900 dark:text-slate-200">
+        <h1 class="text-2xl font-bold">Verification</h1>
+
         <div class="flex flex-col mt-4">
           <span>Enter the verification code you received at</span>
           <span class="font-bold">+{waNumber}</span>
         </div>
         
-        <div id="otp" class="flex flex-row justify-center text-center px-2 mt-5">
+        <div id="otp" class="flex flex-row justify-center text-center mt-5">
           <input on:keyup={handleKeyUp} on:paste={handlePasteCode} bind:value={codes[0]} class="m-1 border h-10 w-10 text-center form-control rounded text-slate-900 bg-slate-100" type="text" maxlength="1" /> 
           <input on:keyup={handleKeyUp} on:paste={handlePasteCode} bind:value={codes[1]} class="m-1 border h-10 w-10 text-center form-control rounded text-slate-900 bg-slate-100" type="text" maxlength="1" /> 
           <input on:keyup={handleKeyUp} on:paste={handlePasteCode} bind:value={codes[2]} class="m-1 border h-10 w-10 text-center form-control rounded text-slate-900 bg-slate-100" type="text" maxlength="1" /> 
