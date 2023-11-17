@@ -29,7 +29,10 @@ export const POST = async ({cookies}) => {
       expired_date: dateFormatted(new Date(Date.now() + 8 * (60 * 60 * 1000))),
       redirect_url: `${PUBLIC_BASE_URL}/payment-status`,
       is_address_required: 0,
-      is_phone_number_required: 1
+      is_phone_number_required: 1,
+      sender_name: user.name,
+      sender_address: user.address,
+      sender_phone_number: user.waNumber,
     };
 
     const res = await flipProvider('/bill', 'POST', payload);
