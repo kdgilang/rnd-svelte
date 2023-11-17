@@ -7,8 +7,8 @@ export const POST = async ({request}) => {
 
     const res = await sendVerificationService(waNumber);
 
-    if (res?.errorMessage) {
-      throw Error(res.errorMessage);
+    if (!res?.status) {
+      throw Error(res.message);
     }
 
     const userRes = await createUserService({
@@ -24,8 +24,8 @@ export const POST = async ({request}) => {
       throw Error(userRes.message);
     }
 
-    return json({ status: true, message: 'success', waNumber });
+    return json({ status: true, message: 'success!', waNumber });
   } catch (error) {
-    return json({ errorMessage: error?.message });
+    return json({ status: false, message: error.message });
   }
 }

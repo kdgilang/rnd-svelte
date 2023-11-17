@@ -44,7 +44,9 @@ export const sendVerificationCodeService = async ({ waNumber, code }) => {
     const waWebProvider = await initWaWebProvider();
     const msgBody = `${code} is your verification code.\nFor your security, do not share this code.`;
     // const template = new Buttons(msgBody, [{ id:'customId', body: 'bt1' }], 'OTP', 'This code expires in 15 minutes.');
-    const wa = await waWebProvider.getNumberId(waNumber);
+
+    const wa = await waWebProvider?.getNumberId(waNumber);
+    console.log('was:', wa);
 
     if (!wa?._serialized) {
       throw Error('Phone number is unavailable on Whatsapp.');

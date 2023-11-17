@@ -1,16 +1,14 @@
 import { json } from '@sveltejs/kit';
-import { UsersModel } from '$lib/data/models/users';
-import { connectDB, disconnectDB } from '$lib/data';
+import { createUserRepository } from '$lib/data/repositories/userRepositories';
 
 export const POST = async ({request}) => {
   try {
     const req = await request.json();
-    await connectDB();
-    const res = await UsersModel.create(req);
-    await disconnectDB();
 
-    return json(res);
+    const user = await createUserRepository(req);
+
+    return json({ status: true, message: 'success!', user });
   } catch (err) {
-    return json(err);
+    return json({ status: false, message: err.message });
   }
 }

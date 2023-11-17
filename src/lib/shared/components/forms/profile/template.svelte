@@ -1,5 +1,6 @@
 <script>
-	import { getContext } from "svelte";
+	import classNames from "$lib/shared/utils/classNames";
+  import { getContext } from "svelte";
 	import Stretch from "svelte-loading-spinners/Stretch.svelte";
   
   let isBusy = false;
@@ -17,15 +18,17 @@
 
 {#if form}
 <div
-  class="flex items-center p-4 mb-4 text-slate-100 rounded-md bg-red/60"
-  class:bg-green={form?.status}
+  class={classNames(
+    "flex items-center p-4 mb-4 text-slate-100 rounded-md",
+    form.status ? "bg-green" : "bg-red/60"
+  )}
   role="alert">
   <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
     <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
   </svg>
   <span class="sr-only">Info</span>
   <div class="ml-3 text-sm font-medium">
-    {form?.message}
+    {form.message}
   </div>
   <button on:click={() => form = ''} type="button" class="ml-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-md focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex items-center justify-center h-8 w-8 dark:bg-gray-800 dark:text-red-400 dark:hover:bg-gray-700" data-dismiss-target="#alert-2" aria-label="Close">
     <span class="sr-only">Close</span>
@@ -43,7 +46,7 @@
   </div>
   <div>
     <label for="phone" class="block mb-2 text-sm font-medium text-slate-900 dark:text-slate-100">Whatsapp number</label>
-    <div class="relative border border-slate-300 rounded-md dark:border-slate-600 overflow-hidden">
+    <div class="relative border border-slate-300 rounded-md dark:border-slate-600 overflow-hidden opacity-40">
       <div class="absolute bg-slate-500 inset-y-0 left-0 flex items-center px-2.5 pointer-events-none">
         <span class="text-slate-900 dark:text-slate-400 block">+62</span>
       </div>

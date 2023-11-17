@@ -10,8 +10,8 @@
   export let data;
   let codes = []
   let isBusy = false;
-  let error = '';
   let resendInseconds = 0;
+  let error = '';
 
   const { waNumber } = data;
   
@@ -65,7 +65,7 @@
         window.location.href = `${$page.url.searchParams.get('r')}`;
         return;
       }
-
+      
       window.location.href = `/users/${resVerify.userId}`;
     } catch(err) {
       error = err.message;
@@ -96,15 +96,15 @@
 
       const res = await sendVerificationService(waNumber);
 
-      if (res?.error) {
-        throw res.error;
+      if (!res?.status) {
+        throw Error(res.message);
       }
       
     } catch(err) {
-      const seconds = err?.split('(')?.[1]?.split(')')?.[0];
+      const seconds = err.message?.split('(')?.[1]?.split(')')?.[0];
       resendInseconds = Number(seconds);
       
-      error = err;
+      error = err.message;
     } finally {
       isBusy = false;
     }

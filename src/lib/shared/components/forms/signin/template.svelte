@@ -2,9 +2,7 @@
 	import Stretch from "svelte-loading-spinners/Stretch.svelte";
   import { goto } from '$app/navigation';
   import Cookies from 'js-cookie';
-	import {
-    authService
-  } from "$lib/shared/services/userServices";
+	import { authService } from "$lib/shared/services/userServices";
   import { page } from '$app/stores'
   
   let waNumber = '';
@@ -19,8 +17,6 @@
     }
   }
 
-  const redirectPath = $page.url.searchParams.get('r')
-
   const handleSubmit = async () => {
     try {
       if(isBusy) return
@@ -31,14 +27,21 @@
         waNumber: waNumberFormatted
       });
 
-      if(res?.errorMessage) {
-        throw Error(res.errorMessage);
+      if(!res?.status) {
+        throw Error(res.message);
       }
 
       Cookies.set('waNumber', res.waNumber, { expires: 1 });
-      goto(`/verification?r=${redirectPath}`);
+
+      let redirectPath = '/verification';
+
+      if ($page.url.searchParams.has('r')) {
+        redirectPath += `?r=${$page.url.searchParams.get('r')}`;
+      }
+
+      goto(redirectPath);
     } catch (err) {
-      error = err?.message;
+      error = err.message;
     } finally {
       isBusy = false;
     }

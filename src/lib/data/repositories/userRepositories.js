@@ -1,14 +1,27 @@
 import { UsersModel } from '$lib/data/models/users';
 import { connectDB, disconnectDB } from '$lib/data';
 
-export const updateUserRepository = async (query, newData) => {
+export const createUserRepository = async (user) => {
+  try {
+    await connectDB();
+    const res = await UsersModel.create(user);
+    await disconnectDB();
+
+    return res;
+  } catch (error) {
+    console.error('createUserRepository:', error);
+    throw error;
+  }
+}
+
+export const updateUserRepository = async (query, user) => {
   try {
     await connectDB();
 
-    newData.updated_date = Date.now();
+    user.updated_date = Date.now();
   
     const userModel = await UsersModel.findOneAndUpdate(query, {
-      ...newData
+      ...user
     }).exec();
 
     await disconnectDB();
