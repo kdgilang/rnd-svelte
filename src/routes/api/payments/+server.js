@@ -38,7 +38,9 @@ export const POST = async ({cookies}) => {
       throw Error(res.errors[0]?.message);
     }
 
-    return json({ status: true, message: 'success!'});
+    const { link_url } = res;
+
+    return json({ status: true, message: 'success!', link_url });
   } catch (err) {
     return json({ status: false, message: err.message });
   }

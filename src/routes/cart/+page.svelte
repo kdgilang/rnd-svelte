@@ -44,7 +44,7 @@
         throw Error(res?.message);
       }
 
-			// window.location.href = `https://${res.link_url}`;
+			window.location.href = `https://${res.link_url}`;
 		} catch (err) {
       error = err;
 		} finally {
