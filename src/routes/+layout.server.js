@@ -22,6 +22,10 @@ export async function load({ route, cookies }) {
 
     userData = token ? jwt.verify(token, JWT_SECRET_KEY) : '';
 
+    if (userData?.user) {
+      carts = JSON.parse(JSON.stringify(await getCartsRepository({ user: userData.user._id })));
+    }
+
   } catch(err) {
     let errorMessage = err?.message;
 
@@ -34,10 +38,6 @@ export async function load({ route, cookies }) {
     return {
       errorMessage
     };
-  }
-
-  if (userData?.user) {
-    carts = JSON.parse(JSON.stringify(await getCartsRepository({ user: userData.user._id })));
   }
 
   // check if user session exists on some pages
