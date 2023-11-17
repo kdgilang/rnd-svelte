@@ -19,7 +19,7 @@ export const POST = async ({cookies}) => {
     const carts = await getCartsRepository({ user: user._id });
 
     const totalAmount = carts?.reduce((prev, item) => (
-      prev + (item?.product.price * item.product.quantity)
+      prev + (item?.product.price * item.quantity)
     ), 0) + 10000;
 
     const payload = {
