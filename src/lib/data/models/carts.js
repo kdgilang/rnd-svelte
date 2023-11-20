@@ -25,11 +25,13 @@ export const cartsSchema = mongoose.Schema({
   },
   paymentStatus: {
     type: String,
-    enum: ['Pending' , 'Paid']
+    enum: ['Pending' , 'Paid'],
+    default: 'Pending'
   },
   deliveryStatus: {
     type: String,
-    enum: ['Pending', 'On the way', 'Arrived']
+    enum: ['Pending', 'On the way', 'Arrived'],
+    default: 'Pending'
   },
   created_date: {
     type: Date,

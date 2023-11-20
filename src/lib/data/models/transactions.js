@@ -1,10 +1,16 @@
 import mongoose from 'mongoose';
-import { cartsSchema } from './carts';
 
 const transactionsSchema = mongoose.Schema({
-  carts: [cartsSchema],
-  name: {
-    type: String,
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Users'
+  },
+  carts: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Carts'
+  }],
+  flip: {
+    type: Object
   },
   note: {
     type: String,

@@ -46,7 +46,7 @@
 
 			window.location.href = `https://${res.link_url}`;
 		} catch (err) {
-      error = err;
+      error = err.message;
 		} finally {
 			isBusy = false;
 		}
