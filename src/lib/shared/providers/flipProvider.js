@@ -14,12 +14,18 @@ export const flipProvider = async (path, method, requestBody) => {
   headers.append('Content-Type', 'application/x-www-form-urlencoded');
   headers.append('Authorization', `Basic ${btoa(FLIP_API_KEY)}:`);
 
-  const requestOptions = {
+  let requestOptions = {
     method,
-    headers,
-    body: new URLSearchParams(requestBody).toString(),
-    redirect: 'follow'
+    headers
   };
+
+  if (method === 'POST') {
+    requestOptions = {
+      ...requestOptions,
+      body: new URLSearchParams(requestBody).toString(),
+      redirect: 'follow'
+    }
+  }
 
   return (await fetch(`${FLIP_API_HOST}${path}`, requestOptions)).json();
 }

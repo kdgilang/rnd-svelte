@@ -1,6 +1,28 @@
 import { TransactionsModel } from '$lib/data/models/transactions';
 import { connectDB, disconnectDB } from '$lib/data';
 
+export const getTransactionRepository = async (query) => {
+  try {
+    await connectDB();
+    const transaction = await TransactionsModel.findOne(query)
+      .populate({
+        path: 'carts',
+        populate: {
+          path: 'product'
+        }
+      }).lean();
+    await disconnectDB();
+
+    if (!transaction) {
+      throw Error('No transaction found.');
+    }
+
+    return transaction;
+  } catch (error) {
+    console.error('getTransactionRepository:', error);
+    throw error;
+  }
+}
 
 export const getTransactionsRepository = async (query) => {
   try {
@@ -10,7 +32,7 @@ export const getTransactionsRepository = async (query) => {
     await disconnectDB();
 
     if (!transactions) {
-      throw Error('No Transactions found.');
+      throw Error('No transactions found.');
     }
 
     return transactions;
@@ -29,7 +51,7 @@ export const updateTransactionRepository = async (query, newData) => {
     await disconnectDB();
 
     if (!Transactions) {
-      throw Error('Not found.');
+      throw Error('No transaction found.');
     }
 
     return Transactions;
