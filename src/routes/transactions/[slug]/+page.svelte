@@ -53,7 +53,7 @@
           </div>
         </li>
         {:else}
-          <p class="text-xs">No transaction.</p>
+          <p class="text-xs">No cart.</p>
         {/each}
       </ul>
     </div>
