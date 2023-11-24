@@ -1,8 +1,8 @@
 import { json } from '@sveltejs/kit';
 import { JWT_SECRET_KEY } from '$env/static/private';
 import jwt from 'jsonwebtoken';
-import { flipProvider } from '$lib/shared/providers/flipProvider';
-import { dateFormatted } from '$lib/shared/utils/dateFormatted';
+import { flipProvider } from '$lib/providers/flipProvider';
+import { dateFormatted } from '$lib/utils/dateFormatted';
 import { getCartsRepository } from '$lib/data/repositories/cartRepositories';
 import { createTransactionRepository } from '$lib/data/repositories/transactionRepositories';
 

@@ -1,8 +1,8 @@
 <script>
-	import Switch from '$lib/shared/components/forms/switch/template.svelte';
-	// import Select from '$lib/shared/components/forms/select/template.svelte';
-	import Cart from '$lib/shared/components/elements/cart/template.svelte';
-	import { siteSettings } from '$lib/shared/stores/siteSettings.js';
+	import Switch from '$lib/components/forms/switch/template.svelte';
+	// import Select from '$lib/components/forms/select/template.svelte';
+	import Cart from '$lib/components/elements/cart/template.svelte';
+	import { siteSettings } from '$lib/stores/siteSettings.js';
 	import { getContext } from 'svelte';
 
 	function handleOnChange(event) {

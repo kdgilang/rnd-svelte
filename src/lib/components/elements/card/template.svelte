@@ -1,8 +1,8 @@
 <script>
-	import Image from '$lib/shared/components/elements/image/template.svelte'
-	import { createCartService } from '$lib/shared/services/cartServices';
-	import { cartStore } from '$lib/shared/stores/cart';
-	import { priceFormatted } from '$lib/shared/utils/priceFormatted';
+	import Image from '$lib/components/elements/image/template.svelte'
+	import { createCartService } from '$lib/services/cartServices';
+	import { cartStore } from '$lib/stores/cart';
+	import { priceFormatted } from '$lib/utils/priceFormatted';
 	import { getContext } from 'svelte';
   import './style.scss';
 	import Stretch from 'svelte-loading-spinners/Stretch.svelte';

@@ -2,7 +2,7 @@
 	import Stretch from "svelte-loading-spinners/Stretch.svelte";
   import { goto } from '$app/navigation';
   import Cookies from 'js-cookie';
-	import { authService } from "$lib/shared/services/userServices";
+	import { authService } from "$lib/services/userServices";
   import { page } from '$app/stores'
   
   let waNumber = '';

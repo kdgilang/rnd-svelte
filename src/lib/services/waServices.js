@@ -1,5 +1,5 @@
-// import { waProvider } from "$lib/shared/providers/waProvider";
-import { initWaWebProvider } from '$lib/shared/providers/waWebProvider';
+// import { waProvider } from "$lib/providers/waProvider";
+import { initWaWebProvider } from '$lib/providers/waWebProvider';
 
 /**
  * @param {string} [waNumber]

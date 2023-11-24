@@ -1,4 +1,4 @@
-import { localProvider } from "$lib/shared/providers/localProvider";
+import { localProvider } from "$lib/providers/localProvider";
 
 export const createUserService = async (user) => {
   return localProvider('/users', 'POST', user)

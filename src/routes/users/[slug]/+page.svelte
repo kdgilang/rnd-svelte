@@ -1,5 +1,5 @@
 <script>
-  import ProfileForm from '$lib/shared/components/forms/profile/template.svelte';
+  import ProfileForm from '$lib/components/forms/profile/template.svelte';
   import Cookies from 'js-cookie';
 	import { setContext } from 'svelte';
   

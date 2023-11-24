@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 import { JWT_SECRET_KEY } from '$env/static/private';
 import { redirect, error } from '@sveltejs/kit';
 import { getTransactionRepository, updateTransactionRepository } from '$lib/data/repositories/transactionRepositories';
-import { flipProvider } from '$lib/shared/providers/flipProvider';
+import { flipProvider } from '$lib/providers/flipProvider';
 
 export async function load({ cookies, params }) {
   try {

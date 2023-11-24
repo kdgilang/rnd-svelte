@@ -1,6 +1,6 @@
 <script>
-	import { cartStore } from '$lib/shared/stores/cart';
-  import Image from '$lib/shared/components/elements/image/template.svelte';
+	import { cartStore } from '$lib/stores/cart';
+  import Image from '$lib/components/elements/image/template.svelte';
 
 	/** @type {import('./$types').PageData} */
 	export let data;

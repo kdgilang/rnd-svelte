@@ -1,5 +1,5 @@
 <script>
-	import { cartStore } from '$lib/shared/stores/cart';
+	import { cartStore } from '$lib/stores/cart';
 </script>
 
 <div class="flex justify-center items-center w-[100px]">

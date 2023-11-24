@@ -1,5 +1,5 @@
 import { json } from '@sveltejs/kit';
-import { sendVerificationCodeService } from "$lib/shared/services/waServices";
+import { sendVerificationCodeService } from "$lib/services/waServices";
 import dayjs from 'dayjs';
 import { getUserByQueryRepository, updateUserRepository } from '$lib/data/repositories/userRepositories';
 

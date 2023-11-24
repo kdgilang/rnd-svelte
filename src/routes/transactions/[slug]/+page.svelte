@@ -1,6 +1,6 @@
 <script>
-	import { priceFormatted } from '$lib/shared/utils/priceFormatted.js';
-  import Image from '$lib/shared/components/elements/image/template.svelte';
+	import { priceFormatted } from '$lib/utils/priceFormatted.js';
+  import Image from '$lib/components/elements/image/template.svelte';
 
   export let data;
 

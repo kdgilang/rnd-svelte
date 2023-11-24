@@ -1,11 +1,11 @@
 <script>
 	import '../app.css';
 	import { onMount, setContext } from 'svelte';
-	import { siteSettings } from '$lib/shared/stores/siteSettings.js';
-	import Header from '$lib/shared/components/layouts/header/template.svelte';
+	import { siteSettings } from '$lib/stores/siteSettings.js';
+	import Header from '$lib/components/layouts/header/template.svelte';
 	import Jellyfish from 'svelte-loading-spinners/Jellyfish.svelte';
 	import { navigating } from '$app/stores';
-	import { cartStore } from '$lib/shared/stores/cart';
+	import { cartStore } from '$lib/stores/cart';
 
 	/** @type {import('./$types').LayoutData} */
 	export let data;

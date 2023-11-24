@@ -1,5 +1,5 @@
 <script>
-	import Card from '$lib/shared/components/elements/card/template.svelte';
+	import Card from '$lib/components/elements/card/template.svelte';
 
 	/** @type {import('./$types').PageData} */
 	export let data;

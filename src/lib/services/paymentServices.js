@@ -1,4 +1,4 @@
-import { localProvider } from "$lib/shared/providers/localProvider";
+import { localProvider } from "$lib/providers/localProvider";
 
 export const payService = async () => {
   return localProvider('/payments', 'POST')

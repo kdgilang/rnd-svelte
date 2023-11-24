@@ -5,7 +5,7 @@ import { UsersModel } from '$lib/data/models/users';
 import { ProductsModel } from '$lib/data/models/products';
 import { CartsModel } from '$lib/data/models/carts';
 import { getCartsRepository } from '$lib/data/repositories/cartRepositories';
-import { initWaWebProvider } from '$lib/shared/providers/waWebProvider';
+import { initWaWebProvider } from '$lib/providers/waWebProvider';
 
 /** @type {import('./$types').LayoutServerLoad} */
 export async function load({ route, cookies }) {

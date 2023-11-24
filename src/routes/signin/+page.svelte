@@ -1,5 +1,5 @@
 <script>
-  import SigninForm from '$lib/shared/components/forms/signin/template.svelte';
+  import SigninForm from '$lib/components/forms/signin/template.svelte';
 </script>
 
 <div class="container">

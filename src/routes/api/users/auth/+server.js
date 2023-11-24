@@ -1,5 +1,5 @@
 import { json } from '@sveltejs/kit';
-import { createUserService, sendVerificationService } from "$lib/shared/services/userServices";
+import { createUserService, sendVerificationService } from "$lib/services/userServices";
 
 export const POST = async ({request}) => {
   try {

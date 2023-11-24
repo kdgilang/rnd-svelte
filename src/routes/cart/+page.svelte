@@ -1,10 +1,10 @@
 <script>
-	import { cartStore } from '$lib/shared/stores/cart';
-	import { priceFormatted } from '$lib/shared/utils/priceFormatted';
+	import { cartStore } from '$lib/stores/cart';
+	import { priceFormatted } from '$lib/utils/priceFormatted';
 	import Stretch from 'svelte-loading-spinners/Stretch.svelte';
 	import { goto } from '$app/navigation';
 	import { getContext } from 'svelte';
-	import { payService } from '$lib/shared/services/paymentServices';
+	import { payService } from '$lib/services/paymentServices';
 
 	let isBusy = false;
 	let subtotalAmount = 0;

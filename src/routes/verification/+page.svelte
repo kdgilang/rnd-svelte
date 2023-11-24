@@ -1,10 +1,10 @@
 <script>
-	import { sendVerificationService, verificationService } from '$lib/shared/services/userServices';
+	import { sendVerificationService, verificationService } from '$lib/services/userServices';
 	import Stretch from 'svelte-loading-spinners/Stretch.svelte';
   import Cookies from 'js-cookie';
 	import { onMount } from 'svelte';
-	import { createCartService } from '$lib/shared/services/cartServices.js';
-	import { cartStore } from '$lib/shared/stores/cart';
+	import { createCartService } from '$lib/services/cartServices.js';
+	import { cartStore } from '$lib/stores/cart';
 	import { page } from '$app/stores';
 
   export let data;

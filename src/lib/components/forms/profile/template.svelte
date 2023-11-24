@@ -1,5 +1,5 @@
 <script>
-	import classNames from "$lib/shared/utils/classNames";
+	import classNames from "$lib/utils/classNames";
   import { getContext } from "svelte";
 	import Stretch from "svelte-loading-spinners/Stretch.svelte";
   
