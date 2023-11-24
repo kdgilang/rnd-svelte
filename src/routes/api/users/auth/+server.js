@@ -1,11 +1,14 @@
 import { json } from '@sveltejs/kit';
-import { createUserService, sendVerificationService } from "$lib/services/userServices";
+import { createUserService } from "$lib/services/userServices";
+import { sendWaOtpService } from '$lib/services/waServices';
 
 export const POST = async ({request}) => {
   try {
     const { waNumber } = await request.json();
 
-    const res = await sendVerificationService(waNumber);
+    const res = await sendWaOtpService(waNumber);
+
+    console.log(res);
 
     if (!res?.status) {
       throw Error(res.message);

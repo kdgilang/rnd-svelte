@@ -1,11 +1,12 @@
 <script>
-	import { sendVerificationService, verificationService } from '$lib/services/userServices';
+	import { verificationService } from '$lib/services/userServices';
 	import Stretch from 'svelte-loading-spinners/Stretch.svelte';
   import Cookies from 'js-cookie';
 	import { onMount } from 'svelte';
 	import { createCartService } from '$lib/services/cartServices.js';
 	import { cartStore } from '$lib/stores/cart';
 	import { page } from '$app/stores';
+	import { sendWaOtpService } from '$lib/services/waServices.js';
 
   export let data;
   let codes = []
@@ -94,7 +95,7 @@
       isBusy = true;
       codes = [];
 
-      const res = await sendVerificationService(waNumber);
+      const res = await sendWaOtpService(waNumber);
 
       if (!res?.status) {
         throw Error(res.message);

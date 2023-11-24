@@ -1,7 +1,7 @@
-import { PUBLIC_WA_API_HOST, PUBLIC_WA_API_TOKEN } from '$env/static/public';
+import { WA_API_HOST, WA_API_TOKEN } from '$env/static/private';
 
 const headers = {
-  Authorization: `Bearer ${PUBLIC_WA_API_TOKEN}`,
+  Authorization: `Bearer ${WA_API_TOKEN}`,
   'Content-Type': 'application/json'
 };
 
@@ -15,7 +15,7 @@ export const waProvider = async (requestBody) => {
     ...requestBody
   }
 
-  return (await fetch(PUBLIC_WA_API_HOST, {
+  return (await fetch(WA_API_HOST, {
     method: 'POST',
     headers,
     body: JSON.stringify(body)

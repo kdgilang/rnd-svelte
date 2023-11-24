@@ -2,6 +2,13 @@ import Whatsapp from 'whatsapp-web.js';
 
 let waWebProvider;
 
+export const waProvider = {
+  name: 'waProvider',
+  configureServer() {
+    initWaWebProvider()
+  }
+}
+
 export const initWaWebProvider = async () => {
   try {
     const { Client, LocalAuth } = Whatsapp;
